@@ -1,0 +1,23 @@
+je veux creer un site web contact pour micro entreprise (1 employe) consulting SAP, avec une forte direction artistique. nom de l'entreprise : FiXiS
+
+design inspiration :
+https://juliavolkmar.de/
+https://beckmans.college/2024/sv
+https://www.michaelspeichert.com/
+https://www.cavempt.com/
+
+Main colors:
+#FCD405
+#1B8F3A 
+
+stack :
+a definir
+
+Pages :
+Ideally only one : landing/contact page. Open for two, aka one for landing another for contact
+
+features :
+2 languages : french, english
+Top notch contact componenent(s)
+
+Create the complete documentation suite (.md(s)) to realise this project, sitemap, wireframes, functional requirements etc included.
