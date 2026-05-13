@@ -1,66 +1,43 @@
-# FiXiS — Project Documentation Suite
+# Astro Starter Kit: Minimal
 
-> SAP Consulting · Micro-Enterprise · Contact Website
-
----
-
-## Document Index
-
-| # | Document | Description |
-|---|----------|-------------|
-| 1 | `README.md` | This file — project overview & index |
-| 2 | `01-BRIEF.md` | Creative & strategic brief |
-| 3 | `02-SITEMAP.md` | Site architecture & URL structure |
-| 4 | `03-WIREFRAMES.md` | Page-level wireframes (ASCII/text) |
-| 5 | `04-FUNCTIONAL-REQUIREMENTS.md` | Feature specs & acceptance criteria |
-| 6 | `05-DESIGN-SYSTEM.md` | Visual language, tokens, components |
-| 7 | `06-TECH-STACK.md` | Recommended stack with rationale |
-| 8 | `07-CONTENT.md` | Copy (FR + EN), i18n structure |
-| 9 | `08-CONTACT-SPEC.md` | Detailed contact feature specification |
-| 10 | `09-CHECKLIST.md` | Pre-launch checklist |
-
----
-
-## Project at a Glance
-
-**Client:** FiXiS  
-**Type:** Micro-enterprise (1 employee), SAP consulting  
-**Goal:** Establish a premium digital presence that communicates expertise, personality and trust — and converts visitors into leads via a top-notch contact experience.  
-**Audience:** Decision-makers at mid-size companies looking for SAP consulting (FR + EN-speaking markets)  
-**Languages:** French (primary), English  
-**Pages:** 1 (single-page) or 2 (landing + contact) — TBD with client  
-**Brand colors:** #FCD405 (Voltage Yellow), #1B8F3A (Forest Green)
-
----
-
-## Design References
-
-| URL | What to borrow |
-|-----|---------------|
-| juliavolkmar.de | Clean typographic hierarchy, editorial calm, personal warmth |
-| beckmans.college/2024/sv | Bold grid-breaking layout, confident white space, strong headline rhythm |
-| michaelspeichert.com | Micro-interactions, restrained but expressive motion, dark/light contrast |
-| cavempt.com | Texture, anti-corporate rawness, unexpected color pops |
-
-**Synthesis:** High-contrast editorial design with a human, craft-focused voice — not a corporate brochure, not a portfolio ego-trip. Something that feels built, considered, and quietly confident.
-
----
-
-## Quick-Start for Developers
-
-```bash
-# Clone and install (once stack is confirmed — see 06-TECH-STACK.md)
-git clone <repo>
-cd fixis
-npm install
-
-# Dev
-npm run dev
-
-# Build
-npm run build
-
-# i18n keys live in
-/src/i18n/fr.json
-/src/i18n/en.json
+```sh
+npm create astro@latest -- --template minimal
 ```
+
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+
+## 🚀 Project Structure
+
+Inside of your Astro project, you'll see the following folders and files:
+
+```text
+/
+├── public/
+├── src/
+│   └── pages/
+│       └── index.astro
+└── package.json
+```
+
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+
+Any static assets, like images, can be placed in the `public/` directory.
+
+## 🧞 Commands
+
+All commands are run from the root of the project, from a terminal:
+
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
+
+## 👀 Want to learn more?
+
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

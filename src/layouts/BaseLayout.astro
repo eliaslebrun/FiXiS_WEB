@@ -1,0 +1,118 @@
+---
+/**
+ * BaseLayout.astro
+ * Shared HTML shell for all pages.
+ * Imports global styles, sets meta tags, manages lang attribute.
+ */
+import '../styles/global.css'
+import type { Lang } from '../utils/i18n'
+import { t } from '../utils/i18n'
+
+interface Props {
+  lang?: Lang
+  title?: string
+  description?: string
+  ogTitle?: string
+  ogDescription?: string
+  ogImage?: string
+  canonical?: string
+}
+
+const {
+  lang = 'fr',
+  title,
+  description,
+  ogTitle,
+  ogDescription,
+  ogImage = '/og-image.jpg',
+  canonical,
+} = Astro.props
+
+const pageTitle       = title       ?? t(lang, 'meta.title')
+const pageDescription = description ?? t(lang, 'meta.description')
+const pageOgTitle     = ogTitle     ?? t(lang, 'meta.og_title')
+const pageOgDesc      = ogDescription ?? t(lang, 'meta.og_description')
+const canonicalUrl    = canonical   ?? Astro.url.href
+const currentYear     = new Date().getFullYear()
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary meta -->
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:url"         content={canonicalUrl} />
+    <meta property="og:title"       content={pageOgTitle} />
+    <meta property="og:description" content={pageOgDesc} />
+    <meta property="og:image"       content={new URL(ogImage, Astro.site).href} />
+
+    <!-- Hreflang (FR canonical, EN alternate) -->
+    <link rel="alternate" hreflang="fr" href={Astro.site?.href ?? 'https://fixis.fr/'} />
+    <link rel="alternate" hreflang="en" href={Astro.site?.href ?? 'https://fixis.fr/'} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon"  href="/favicon.ico" />
+
+    <!-- Structured data — Schema.org Person / LocalBusiness -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "FiXiS",
+        "description": "Consulting SAP Finance indépendant — Migration S/4HANA, SAP FI/CO, MCO.",
+        "url": "https://fixis.fr",
+        "email": "contact@fixis.fr",
+        "areaServed": ["FR", "BE", "DE", "CH"],
+        "serviceType": "SAP Finance Consulting"
+      }
+    </script>
+  </head>
+
+  <body>
+    <!-- Skip to main content (accessibility) -->
+    <a class="skip-link" href="#main">
+      {lang === 'fr' ? 'Aller au contenu principal' : 'Skip to main content'}
+    </a>
+
+    <slot />
+
+    <!-- Language initialisation script — runs before first paint -->
+    <script>
+      import { getLang, setLang } from '../utils/i18n'
+
+      // On first load: apply stored / detected language
+      const lang = getLang()
+      document.documentElement.lang = lang
+
+      // Expose globally for components that haven't loaded yet
+      ;(window as any).__fixisLang = lang
+    </script>
+
+    <!-- Scroll-reveal IntersectionObserver -->
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible')
+              observer.unobserve(entry.target)
+            }
+          })
+        },
+        { threshold: 0.15 }
+      )
+
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el))
+    </script>
+  </body>
+</html>

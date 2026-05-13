@@ -1,0 +1,180 @@
+---
+/**
+ * mentions-legales.astro
+ * French legal notices page (required by French law).
+ * FR-LEGAL-01 | See docs/07-CONTENT.md §9.1
+ *
+ * ⚠️  Fill in all [bracket] placeholders with real client data before launch.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Nav from '../components/Nav.astro'
+import Footer from '../components/Footer.astro'
+import type { Lang } from '../utils/i18n'
+
+const lang: Lang = 'fr'
+---
+
+<BaseLayout
+  lang={lang}
+  title="Mentions légales — FiXiS"
+  description="Mentions légales du site fixis.fr — éditeur, hébergeur, propriété intellectuelle."
+>
+  <Nav lang={lang} />
+
+  <main id="main" class="legal-page" tabindex="-1">
+    <div class="container">
+      <a href="/" class="legal-page__back">← Retour à l'accueil</a>
+
+      <h1 class="legal-page__title">Mentions légales</h1>
+
+      <section class="legal-section">
+        <h2 class="legal-section__title">1. Éditeur du site</h2>
+        <p>
+          <strong>Raison sociale :</strong> FiXiS<br />
+          <strong>Forme juridique :</strong> [Micro-entreprise / EURL / …]<br />
+          <strong>Adresse :</strong> [Adresse complète]<br />
+          <strong>SIRET :</strong> [Numéro SIRET]<br />
+          <strong>Email :</strong> <a href="mailto:contact@fixis.fr">contact@fixis.fr</a><br />
+          <strong>Téléphone :</strong> [+33 X XX XX XX XX]
+        </p>
+        <p>
+          <strong>Directeur de la publication :</strong> [Prénom Nom]
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2 class="legal-section__title">2. Hébergement</h2>
+        <p>
+          Ce site est hébergé par :<br />
+          <strong>Vercel Inc.</strong><br />
+          340 S Lemon Ave #4133<br />
+          Walnut, CA 91789, USA<br />
+          <a href="https://vercel.com" target="_blank" rel="noopener noreferrer">https://vercel.com</a>
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2 class="legal-section__title">3. Propriété intellectuelle</h2>
+        <p>
+          L'ensemble des contenus présents sur ce site (textes, images, logos, code source)
+          est la propriété exclusive de FiXiS, sauf mention contraire.
+          Toute reproduction, représentation, modification ou exploitation, totale ou partielle,
+          de ces contenus est interdite sans autorisation préalable et écrite de l'éditeur.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2 class="legal-section__title">4. Données personnelles</h2>
+        <p>
+          Pour toute information relative au traitement de vos données personnelles,
+          veuillez consulter notre{' '}
+          <a href="/politique-confidentialite">Politique de confidentialité</a>.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2 class="legal-section__title">5. Cookies</h2>
+        <p>
+          Ce site utilise Umami Analytics, un outil d'analyse d'audience anonymisé
+          ne déposant aucun cookie de traçage. Aucune donnée personnelle n'est collectée
+          via ce dispositif.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2 class="legal-section__title">6. Liens hypertextes</h2>
+        <p>
+          FiXiS ne peut être tenu responsable du contenu des sites externes accessibles
+          via des liens présents sur ce site.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2 class="legal-section__title">7. Droit applicable</h2>
+        <p>
+          Le présent site est soumis au droit français. En cas de litige,
+          les tribunaux français seront seuls compétents.
+        </p>
+        <p class="legal-page__update">
+          Dernière mise à jour : {new Date().toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <Footer lang={lang} />
+</BaseLayout>
+
+<style>
+  .legal-page {
+    background: var(--color-black);
+    padding-top: calc(4rem + var(--space-10));
+    padding-bottom: var(--space-16);
+    min-height: 100vh;
+  }
+
+  .legal-page__back {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: var(--text-small);
+    font-weight: 600;
+    letter-spacing: var(--text-label-ls);
+    text-transform: uppercase;
+    color: var(--color-gray-400);
+    text-decoration: none;
+    margin-bottom: var(--space-10);
+    transition: color var(--duration-fast);
+  }
+
+  .legal-page__back:hover {
+    color: var(--color-yellow);
+  }
+
+  .legal-page__title {
+    font-family: var(--font-display);
+    font-size: var(--text-h1);
+    font-weight: 800;
+    line-height: var(--text-h1-lh);
+    letter-spacing: var(--text-h1-ls);
+    color: var(--color-cream);
+    margin-bottom: var(--space-10);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--space-6);
+  }
+
+  .legal-section {
+    margin-bottom: var(--space-8);
+  }
+
+  .legal-section__title {
+    font-family: var(--font-display);
+    font-size: var(--text-h2);
+    font-weight: 700;
+    color: var(--color-cream);
+    margin-bottom: var(--space-4);
+  }
+
+  .legal-section p {
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    line-height: var(--text-body-lh);
+    color: var(--color-gray-400);
+    margin-bottom: var(--space-3);
+    max-width: 70ch;
+  }
+
+  .legal-section a {
+    color: var(--color-cream);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .legal-section a:hover {
+    color: var(--color-yellow);
+  }
+
+  .legal-page__update {
+    font-size: var(--text-small);
+    color: var(--color-gray-700) !important;
+  }
+</style>

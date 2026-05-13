@@ -1,0 +1,50 @@
+---
+/**
+ * Button.astro
+ * Primary (yellow, sharp) and Ghost variants.
+ * See docs/05-DESIGN-SYSTEM.md §7
+ */
+
+interface Props {
+  variant?: 'primary' | 'ghost'
+  href?: string
+  type?: 'button' | 'submit' | 'reset'
+  ariaLabel?: string
+  id?: string
+  disabled?: boolean
+  class?: string
+}
+
+const {
+  variant = 'primary',
+  href,
+  type = 'button',
+  ariaLabel,
+  id,
+  disabled = false,
+  class: extraClass = '',
+} = Astro.props
+
+const cssClass = `btn-${variant} ${extraClass}`.trim()
+---
+
+{href ? (
+  <a
+    href={href}
+    class={cssClass}
+    aria-label={ariaLabel}
+    id={id}
+  >
+    <slot />
+  </a>
+) : (
+  <button
+    type={type}
+    class={cssClass}
+    aria-label={ariaLabel}
+    id={id}
+    disabled={disabled}
+  >
+    <slot />
+  </button>
+)}

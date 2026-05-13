@@ -1,0 +1,225 @@
+---
+/**
+ * Hero.astro
+ * Full-viewport hero section.
+ * FR-HERO-01 → 05 | See docs/03-WIREFRAMES.md W3/W4
+ */
+import type { Lang } from '../utils/i18n'
+import { t } from '../utils/i18n'
+import Button from './ui/Button.astro'
+
+interface Props {
+  lang: Lang
+}
+
+const { lang } = Astro.props
+---
+
+<section id="hero" class="hero" aria-label={lang === 'fr' ? 'Accueil' : 'Home'}>
+  <div class="hero__inner container">
+    <!-- Left column — copy -->
+    <div class="hero__copy">
+      <span class="hero__label section-label hero-animate">
+        {t(lang, 'hero.label')}
+      </span>
+
+      <h1 class="hero__headline hero-animate hero-animate-delay-1">
+        <span class="hero__headline-line">{t(lang, 'hero.headline_1')}</span>
+        <span class="hero__headline-line">{t(lang, 'hero.headline_2')}</span>
+        <span class="hero__headline-line">{t(lang, 'hero.headline_3')}</span>
+        <span class="hero__headline-line hero__headline-line--accent">
+          {t(lang, 'hero.headline_4')}
+        </span>
+      </h1>
+
+      <p class="hero__sub hero-animate hero-animate-delay-2">
+        {t(lang, 'hero.subheadline')}
+      </p>
+
+      <div class="hero__cta hero-animate hero-animate-delay-3">
+        <Button href="/#contact" variant="primary">
+          {t(lang, 'hero.cta')} →
+        </Button>
+      </div>
+    </div>
+
+    <!-- Right column — abstract visual -->
+    <div class="hero__visual" aria-hidden="true">
+      <div class="hero__visual-inner">
+        <!-- Abstract typographic / geometric element -->
+        <svg
+          class="hero__glyph"
+          viewBox="0 0 400 400"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <!-- Large background F letterform -->
+          <text
+            x="20" y="320"
+            font-family="sans-serif"
+            font-weight="900"
+            font-size="360"
+            fill="#FCD405"
+            opacity="0.06"
+          >F</text>
+          <!-- Yellow accent rectangle -->
+          <rect x="20" y="60" width="80" height="6" fill="#FCD405" opacity="0.9"/>
+          <!-- Green rectangle -->
+          <rect x="20" y="80" width="180" height="6" fill="#1B8F3A" opacity="0.7"/>
+          <!-- Dot grid -->
+          {Array.from({ length: 6 }, (_, row) =>
+            Array.from({ length: 6 }, (_, col) => (
+              <circle
+                cx={280 + col * 18}
+                cy={260 + row * 18}
+                r="1.5"
+                fill="#F5F2EC"
+                opacity="0.2"
+              />
+            ))
+          )}
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll hint -->
+  <div class="hero__scroll-hint" aria-hidden="true" id="scroll-hint">
+    <span class="hero__scroll-text">{t(lang, 'hero.scroll_hint')}</span>
+    <span class="hero__scroll-arrow">↓</span>
+  </div>
+</section>
+
+<script>
+  // Fade scroll hint after first scroll
+  const hint = document.getElementById('scroll-hint')
+  if (hint) {
+    const onScroll = () => {
+      if (window.scrollY > 80) {
+        hint.style.opacity = '0'
+        hint.style.pointerEvents = 'none'
+        window.removeEventListener('scroll', onScroll)
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+  }
+</script>
+
+<style>
+  .hero {
+    min-height: 100svh;
+    background: var(--color-black);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    padding-top: 4rem; /* nav height offset */
+  }
+
+  .hero__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: var(--space-10);
+    padding-top: var(--space-10);
+    padding-bottom: var(--space-10);
+  }
+
+  .hero__copy {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .hero__label {
+    color: var(--color-text-muted);
+  }
+
+  .hero__headline {
+    font-family: var(--font-display);
+    font-size: var(--text-display);
+    font-weight: 800;
+    line-height: var(--text-display-lh);
+    letter-spacing: var(--text-display-ls);
+    color: var(--color-cream);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero__headline-line--accent {
+    color: var(--color-yellow);
+  }
+
+  .hero__sub {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    line-height: 1.6;
+    color: var(--color-gray-400);
+    max-width: 42ch;
+  }
+
+  /* Visual */
+  .hero__visual {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .hero__visual-inner {
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 1;
+    border: 1px solid var(--color-border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero__glyph {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Scroll hint */
+  .hero__scroll-hint {
+    position: absolute;
+    bottom: var(--space-8);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+    transition: opacity var(--duration-slow) var(--ease-out-expo);
+  }
+
+  .hero__scroll-text {
+    font-family: var(--font-display);
+    font-size: var(--text-label);
+    font-weight: 400;
+    letter-spacing: var(--text-label-ls);
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .hero__scroll-arrow {
+    color: var(--color-yellow);
+    animation: fadeUp 1s var(--ease-out-expo) 1.5s both;
+  }
+
+  /* Mobile */
+  @media (max-width: 767px) {
+    .hero__inner {
+      grid-template-columns: 1fr;
+    }
+
+    .hero__visual {
+      order: -1;
+      justify-content: center;
+    }
+
+    .hero__visual-inner {
+      max-width: 280px;
+    }
+  }
+</style>

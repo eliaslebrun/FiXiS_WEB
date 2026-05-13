@@ -1,0 +1,34 @@
+---
+/**
+ * index.astro
+ * Main landing page — single page, all sections.
+ * See docs/02-SITEMAP.md Option A
+ */
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Nav from '../components/Nav.astro'
+import Hero from '../components/Hero.astro'
+import Services from '../components/Services.astro'
+import About from '../components/About.astro'
+import Trust from '../components/Trust.astro'
+import Contact from '../components/Contact.astro'
+import Footer from '../components/Footer.astro'
+import { getLang } from '../utils/i18n'
+import type { Lang } from '../utils/i18n'
+
+// Default lang server-side — client will update via script in BaseLayout
+const lang: Lang = 'fr'
+---
+
+<BaseLayout lang={lang}>
+  <Nav lang={lang} />
+
+  <main id="main" tabindex="-1">
+    <Hero    lang={lang} />
+    <Services lang={lang} />
+    <About   lang={lang} />
+    <Trust   lang={lang} />
+    <Contact lang={lang} />
+  </main>
+
+  <Footer lang={lang} />
+</BaseLayout>

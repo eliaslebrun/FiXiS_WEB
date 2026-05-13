@@ -1,0 +1,74 @@
+---
+/**
+ * LangToggle.astro
+ * FR / EN language toggle button.
+ * FR-LANG-02 | FR-A11Y-06
+ */
+import type { Lang } from '../../utils/i18n'
+import { t } from '../../utils/i18n'
+
+interface Props {
+  lang: Lang
+}
+
+const { lang } = Astro.props
+const otherLang: Lang = lang === 'fr' ? 'en' : 'fr'
+const label = t(lang, 'nav.lang_switch')
+---
+
+<button
+  class="lang-toggle"
+  data-other-lang={otherLang}
+  aria-label={lang === 'fr' ? 'Switch to English' : 'Passer en français'}
+  title={lang === 'fr' ? 'Switch to English' : 'Passer en français'}
+>
+  {label}
+</button>
+
+<script>
+  import { setLang } from '../../utils/i18n'
+  import type { Lang } from '../../utils/i18n'
+
+  document.querySelectorAll('.lang-toggle').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const next = (btn as HTMLElement).dataset.otherLang as Lang
+      setLang(next)
+      // Reload page to re-render Astro components with new lang
+      // In a fully client-side app this would be reactive; here we reload.
+      window.location.reload()
+    })
+  })
+</script>
+
+<style>
+  .lang-toggle {
+    font-family: var(--font-display);
+    font-size: var(--text-label);
+    font-weight: 700;
+    letter-spacing: var(--text-label-ls);
+    text-transform: uppercase;
+    color: var(--color-cream);
+    background: transparent;
+    border: 1px solid var(--color-border);
+    padding: var(--space-1) var(--space-3);
+    cursor: pointer;
+    transition:
+      color var(--duration-fast),
+      border-color var(--duration-fast),
+      background var(--duration-fast);
+    min-width: 44px;
+    min-height: 28px;
+  }
+
+  .lang-toggle:hover,
+  .lang-toggle:focus-visible {
+    color: var(--color-black);
+    background: var(--color-yellow);
+    border-color: var(--color-yellow);
+  }
+
+  .lang-toggle:focus-visible {
+    outline: 2px solid var(--color-yellow);
+    outline-offset: 3px;
+  }
+</style>

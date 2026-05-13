@@ -1,0 +1,184 @@
+---
+/**
+ * About.astro
+ * About / bio section — green background.
+ * FR-ABOUT-01 → 04 | See docs/03-WIREFRAMES.md W6
+ */
+import type { Lang } from '../utils/i18n'
+import { t, tArray } from '../utils/i18n'
+
+interface Props {
+  lang: Lang
+}
+
+const { lang } = Astro.props
+
+const credentials = tArray(lang, 'about.credentials')
+---
+
+<section id="about" class="about section" aria-label={t(lang, 'about.headline')}>
+  <div class="container">
+    <div class="about__grid">
+
+      <!-- Left: photo / visual placeholder -->
+      <div class="about__visual reveal">
+        <div class="about__photo-placeholder" aria-label={t(lang, 'about.photo_alt')}>
+          <!-- Replace with <Image> once client provides photo -->
+          <div class="about__photo-inner">
+            <span class="about__photo-initials" aria-hidden="true">FX</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: copy -->
+      <div class="about__copy">
+        <span class="section-label about__label reveal">{t(lang, 'about.label')}</span>
+
+        <h2 class="about__headline reveal stagger-1">
+          {t(lang, 'about.headline')}
+        </h2>
+
+        <div class="about__paragraphs">
+          <p class="about__para reveal stagger-2">{t(lang, 'about.paragraph_1')}</p>
+          <p class="about__para reveal stagger-3">{t(lang, 'about.paragraph_2')}</p>
+        </div>
+
+        <!-- Credentials list -->
+        <div class="about__creds reveal stagger-4">
+          <span class="about__creds-label section-label">
+            {t(lang, 'about.credentials_label')}
+          </span>
+          <ul class="about__creds-list" role="list">
+            {credentials.map((cred) => (
+              <li class="about__cred-item">
+                <span class="about__cred-dot" aria-hidden="true">●</span>
+                {cred}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    background: var(--color-green);
+    color: var(--color-cream);
+  }
+
+  .about__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12);
+    align-items: center;
+  }
+
+  /* Photo */
+  .about__photo-placeholder {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    background: var(--color-green-dark);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 400px;
+  }
+
+  .about__photo-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .about__photo-initials {
+    font-family: var(--font-display);
+    font-size: 5rem;
+    font-weight: 800;
+    color: rgba(245, 242, 236, 0.2);
+    letter-spacing: -0.04em;
+    user-select: none;
+  }
+
+  /* Copy */
+  .about__copy {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .about__label {
+    color: rgba(245, 242, 236, 0.5);
+  }
+
+  .about__headline {
+    font-family: var(--font-display);
+    font-size: var(--text-h1);
+    font-weight: 800;
+    line-height: var(--text-h1-lh);
+    letter-spacing: var(--text-h1-ls);
+    color: var(--color-cream);
+  }
+
+  .about__paragraphs {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .about__para {
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    line-height: var(--text-body-lh);
+    color: rgba(245, 242, 236, 0.85);
+  }
+
+  /* Credentials */
+  .about__creds {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: var(--space-6);
+  }
+
+  .about__creds-label {
+    color: rgba(245, 242, 236, 0.5);
+    margin-bottom: var(--space-4);
+  }
+
+  .about__creds-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .about__cred-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    font-family: var(--font-display);
+    font-size: var(--text-body);
+    color: var(--color-cream);
+  }
+
+  .about__cred-dot {
+    color: var(--color-yellow);
+    font-size: 0.5rem;
+    margin-top: 0.4em;
+    flex-shrink: 0;
+  }
+
+  /* Mobile */
+  @media (max-width: 767px) {
+    .about__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .about__photo-placeholder {
+      max-width: 100%;
+      aspect-ratio: 4 / 3;
+    }
+  }
+</style>

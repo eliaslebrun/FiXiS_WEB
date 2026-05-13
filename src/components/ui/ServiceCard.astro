@@ -1,0 +1,83 @@
+---
+/**
+ * ServiceCard.astro
+ * Individual service card with number, title, description.
+ * Hover: yellow border + subtle tint.
+ * See docs/05-DESIGN-SYSTEM.md §7 — Service Card
+ */
+
+interface Props {
+  number: string
+  title: string
+  description: string
+  staggerIndex?: number
+}
+
+const { number, title, description, staggerIndex = 0 } = Astro.props
+---
+
+<article
+  class={`service-card reveal stagger-${staggerIndex}`}
+  aria-label={title}
+>
+  <span class="service-card__number" aria-hidden="true">{number}</span>
+  <h3 class="service-card__title">{title}</h3>
+  <p class="service-card__desc">{description}</p>
+</article>
+
+<style>
+  .service-card {
+    padding: var(--space-8) var(--space-6);
+    border: 1px solid var(--color-border);
+    position: relative;
+    cursor: default;
+    transition: border-color var(--duration-medium) var(--ease-out-expo);
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(252, 212, 5, 0.04);
+    opacity: 0;
+    transition: opacity var(--duration-medium);
+    pointer-events: none;
+  }
+
+  .service-card:hover {
+    border-color: var(--color-yellow);
+  }
+
+  .service-card:hover::before {
+    opacity: 1;
+  }
+
+  .service-card__number {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 800;
+    line-height: 1;
+    color: rgba(235, 235, 235, 0.08);
+    display: block;
+    margin-bottom: var(--space-4);
+    letter-spacing: -0.04em;
+    user-select: none;
+  }
+
+  .service-card__title {
+    font-family: var(--font-display);
+    font-size: var(--text-h2);
+    font-weight: 700;
+    line-height: var(--text-h2-lh);
+    color: var(--color-cream);
+    margin-bottom: var(--space-4);
+  }
+
+  .service-card__desc {
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    line-height: var(--text-body-lh);
+    color: var(--color-gray-400);
+    max-width: none;
+  }
+</style>

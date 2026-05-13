@@ -1,0 +1,300 @@
+---
+/**
+ * Nav.astro
+ * Sticky navigation bar with mobile hamburger overlay.
+ * FR-NAV-01 → 05 | FR-LANG-02 | FR-A11Y-06
+ */
+import type { Lang } from '../utils/i18n'
+import { t } from '../utils/i18n'
+import LangToggle from './ui/LangToggle.astro'
+
+interface Props {
+  lang: Lang
+}
+
+const { lang } = Astro.props
+---
+
+<header id="nav" class="nav" role="banner">
+  <div class="nav__inner container">
+    <!-- Wordmark -->
+    <a href="/#hero" class="nav__logo" aria-label="FiXiS — retour à l'accueil">
+      FiXiS
+    </a>
+
+    <!-- Desktop nav links -->
+    <nav class="nav__links" aria-label="Navigation principale">
+      <a href="/#services" class="nav__link">{t(lang, 'nav.services')}</a>
+      <a href="/#about"    class="nav__link">{t(lang, 'nav.about')}</a>
+      <a href="/#contact"  class="nav__link">{t(lang, 'nav.contact')}</a>
+    </nav>
+
+    <!-- Right side: lang toggle + hamburger -->
+    <div class="nav__controls">
+      <LangToggle lang={lang} />
+
+      <!-- Hamburger (mobile only) -->
+      <button
+        class="nav__hamburger"
+        id="nav-hamburger"
+        aria-label={t(lang, 'nav.menu_open')}
+        aria-expanded="false"
+        aria-controls="nav-overlay"
+      >
+        <span class="nav__hamburger-bar"></span>
+        <span class="nav__hamburger-bar"></span>
+        <span class="nav__hamburger-bar"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile full-screen overlay -->
+<div class="nav-overlay" id="nav-overlay" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+  <button
+    class="nav-overlay__close"
+    id="nav-overlay-close"
+    aria-label={t(lang, 'nav.menu_close')}
+  >
+    ✕
+  </button>
+
+  <nav class="nav-overlay__links" aria-label="Navigation mobile">
+    <a href="/#services" class="nav-overlay__link">{t(lang, 'nav.services')}</a>
+    <a href="/#about"    class="nav-overlay__link">{t(lang, 'nav.about')}</a>
+    <a href="/#contact"  class="nav-overlay__link">{t(lang, 'nav.contact')}</a>
+    <div class="nav-overlay__lang">
+      <LangToggle lang={lang} />
+    </div>
+  </nav>
+</div>
+
+<script>
+  const hamburger  = document.getElementById('nav-hamburger')!
+  const closeBtn   = document.getElementById('nav-overlay-close')!
+  const overlay    = document.getElementById('nav-overlay')!
+  const navEl      = document.getElementById('nav')!
+  const overlayLinks = overlay.querySelectorAll('.nav-overlay__link')
+
+  // Toggle overlay
+  function openMenu() {
+    overlay.removeAttribute('hidden')
+    hamburger.setAttribute('aria-expanded', 'true')
+    document.body.style.overflow = 'hidden'
+    closeBtn.focus()
+  }
+
+  function closeMenu() {
+    overlay.setAttribute('hidden', '')
+    hamburger.setAttribute('aria-expanded', 'false')
+    document.body.style.overflow = ''
+    hamburger.focus()
+  }
+
+  hamburger.addEventListener('click', openMenu)
+  closeBtn.addEventListener('click', closeMenu)
+  overlayLinks.forEach(link => link.addEventListener('click', closeMenu))
+
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !overlay.hidden) closeMenu()
+  })
+
+  // Sticky nav: add backdrop after scrolling past hero
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      navEl.classList.toggle('nav--scrolled', !entry.isIntersecting)
+    },
+    { threshold: 0 }
+  )
+
+  const hero = document.getElementById('hero')
+  if (hero) observer.observe(hero)
+</script>
+
+<style>
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    transition: background var(--duration-medium) var(--ease-out-expo),
+                backdrop-filter var(--duration-medium);
+  }
+
+  .nav--scrolled {
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 4rem;
+  }
+
+  .nav__logo {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.25rem;
+    letter-spacing: -0.03em;
+    color: var(--color-cream);
+    text-decoration: none;
+    position: relative;
+  }
+
+  .nav__logo::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-yellow);
+    transition: width var(--duration-medium) var(--ease-out-expo);
+  }
+
+  .nav__logo:hover::after,
+  .nav__logo:focus-visible::after {
+    width: 100%;
+  }
+
+  .nav__links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  .nav__link {
+    font-family: var(--font-display);
+    font-size: var(--text-label);
+    font-weight: 600;
+    letter-spacing: var(--text-label-ls);
+    text-transform: uppercase;
+    color: var(--color-gray-100);
+    text-decoration: none;
+    position: relative;
+    transition: color var(--duration-fast);
+  }
+
+  .nav__link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--color-yellow);
+    transition: width var(--duration-medium) var(--ease-out-expo);
+  }
+
+  .nav__link:hover,
+  .nav__link:focus-visible {
+    color: var(--color-cream);
+  }
+
+  .nav__link:hover::after,
+  .nav__link:focus-visible::after {
+    width: 100%;
+  }
+
+  .nav__controls {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  /* Hamburger */
+  .nav__hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: var(--space-2);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  .nav__hamburger-bar {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--color-cream);
+    transition: transform var(--duration-medium), opacity var(--duration-medium);
+  }
+
+  /* Mobile overlay */
+  .nav-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: var(--color-black);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--space-8) var(--section-px);
+    animation: slideDown var(--duration-medium) var(--ease-out-expo) both;
+  }
+
+  .nav-overlay[hidden] {
+    display: none;
+  }
+
+  .nav-overlay__close {
+    position: absolute;
+    top: var(--space-5);
+    right: var(--section-px);
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: var(--color-cream);
+    font-size: 1.25rem;
+    cursor: pointer;
+  }
+
+  .nav-overlay__links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .nav-overlay__link {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-cream);
+    text-decoration: none;
+    transition: color var(--duration-fast);
+  }
+
+  .nav-overlay__link:hover {
+    color: var(--color-yellow);
+  }
+
+  .nav-overlay__lang {
+    margin-top: var(--space-8);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-border);
+  }
+
+  @media (max-width: 767px) {
+    .nav__links {
+      display: none;
+    }
+    .nav__hamburger {
+      display: flex;
+    }
+  }
+</style>

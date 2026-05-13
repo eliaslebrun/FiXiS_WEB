@@ -1,0 +1,147 @@
+{
+  "nav": {
+    "services": "Services",
+    "about": "À propos",
+    "contact": "Contact",
+    "lang_switch": "EN",
+    "menu_open": "Ouvrir le menu",
+    "menu_close": "Fermer le menu"
+  },
+  "hero": {
+    "label": "Consulting SAP · Indépendant",
+    "headline_1": "La précision",
+    "headline_2": "d'un cabinet.",
+    "headline_3": "L'agilité",
+    "headline_4": "d'un expert.",
+    "subheadline": "Accompagnement SAP Finance pour les entreprises qui veulent aller vite — et bien.",
+    "cta": "Parlons-en",
+    "scroll_hint": "Défiler"
+  },
+  "services": {
+    "label": "Expertise",
+    "headline": "Ce que je fais",
+    "subheadline": "Des missions ciblées, des livrables concrets, une interlocution directe.",
+    "s4": {
+      "number": "01",
+      "title": "Migration S/4HANA",
+      "description": "Conduite de projets de migration brownfield et greenfield. Analyse de l'existant, mapping fonctionnel, recette et go-live."
+    },
+    "fico": {
+      "number": "02",
+      "title": "SAP Finance & Controlling",
+      "description": "Implémentation et optimisation des modules FI, CO, AA. Paramétrage, formation utilisateurs, documentation fonctionnelle."
+    },
+    "mco": {
+      "number": "03",
+      "title": "MCO & Support applicatif",
+      "description": "Maintien en condition opérationnelle, gestion des incidents, évolutions fonctionnelles post go-live."
+    },
+    "advisory": {
+      "number": "04",
+      "title": "Conseil & Cadrage",
+      "description": "Audit de l'existant SAP, cadrage de projet, rédaction de cahiers des charges. Intervention en amont pour poser les bonnes bases."
+    }
+  },
+  "about": {
+    "label": "À propos",
+    "headline": "Un consultant, pas une équipe",
+    "paragraph_1": "FiXiS, c'est [Prénom Nom]. Consultant SAP Finance indépendant avec [X] ans d'expérience sur des projets complexes en environnement grand compte.",
+    "paragraph_2": "Ce que ça change pour vous : un seul interlocuteur du cadrage au go-live, une expertise sans frais de structure, et une vraie disponibilité.",
+    "credentials_label": "Certifications & expérience",
+    "credentials": [
+      "SAP Certified — Finance in SAP S/4HANA",
+      "[X]+ projets SAP livrés",
+      "Secteurs : [industrie, énergie, services…]",
+      "Intervention en France et à l'international"
+    ],
+    "photo_alt": "[Prénom Nom], consultant SAP Finance chez FiXiS"
+  },
+  "trust": {
+    "label": "Références",
+    "headline": "Des résultats, pas des promesses",
+    "stats": [
+      { "value": "[X]+", "label": "ans d'expérience SAP" },
+      { "value": "[X]+", "label": "projets livrés" },
+      { "value": "[X]+", "label": "utilisateurs formés" },
+      { "value": "3",    "label": "pays d'intervention" }
+    ],
+    "logos_label": "Ils m'ont fait confiance",
+    "quote": {
+      "text": "[Citation du client à confirmer.]",
+      "author": "[Prénom Nom]",
+      "role": "[Poste], [Entreprise]"
+    }
+  },
+  "contact": {
+    "label": "Contact",
+    "headline": "Un projet ? Parlons-en.",
+    "subheadline": "Répondez à quelques questions — je vous réponds sous 24h.",
+    "form": {
+      "name_label": "Prénom & Nom",
+      "name_placeholder": "Jean Dupont",
+      "company_label": "Entreprise",
+      "company_placeholder": "Acme SA",
+      "email_label": "Adresse e-mail",
+      "email_placeholder": "jean@acme.fr",
+      "phone_label": "Téléphone (optionnel)",
+      "phone_placeholder": "+33 6 12 34 56 78",
+      "subject_label": "Sujet",
+      "message_label": "Message",
+      "message_placeholder": "Décrivez brièvement votre contexte et vos besoins…",
+      "gdpr_label": "J'accepte que mes données soient traitées pour répondre à ma demande.",
+      "gdpr_link_text": "En savoir plus",
+      "gdpr_link_href": "/politique-confidentialite",
+      "submit": "Envoyer le message",
+      "submit_loading": "Envoi en cours…"
+    },
+    "subjects": {
+      "migration": "Migration S/4HANA",
+      "fico": "SAP FI/CO",
+      "mco": "MCO / Support",
+      "audit": "Audit & Cadrage",
+      "other": "Autre"
+    },
+    "errors": {
+      "name_required": "Votre nom est requis",
+      "email_required": "Votre e-mail est requis",
+      "email_invalid": "Adresse e-mail invalide",
+      "company_required": "Le nom de votre entreprise est requis",
+      "subject_required": "Veuillez sélectionner un sujet",
+      "message_required": "Un message est requis",
+      "gdpr_required": "Vous devez accepter pour continuer",
+      "api_failure": "Une erreur est survenue. Écrivez-moi directement : contact@fixis.fr"
+    },
+    "success": {
+      "headline": "Message reçu.",
+      "body": "Merci pour votre message. Je vous réponds dans les 24 heures."
+    },
+    "direct": {
+      "email_label": "E-mail direct",
+      "email": "contact@fixis.fr",
+      "phone_label": "Téléphone",
+      "phone": "[+33 X XX XX XX XX]",
+      "linkedin_label": "LinkedIn",
+      "linkedin": "[url LinkedIn]",
+      "location": "Basé en France · Interventions Europe",
+      "response_time": "Réponse sous 24h"
+    }
+  },
+  "footer": {
+    "tagline": "La précision d'un cabinet. L'agilité d'un expert.",
+    "legal_link": "Mentions légales",
+    "privacy_link": "Politique de confidentialité",
+    "copyright": "© {year} FiXiS — Tous droits réservés",
+    "made_with": "Conçu avec soin"
+  },
+  "meta": {
+    "title": "FiXiS — Consulting SAP Finance Indépendant",
+    "description": "FiXiS est un cabinet de consulting SAP Finance indépendant. Migration S/4HANA, SAP FI/CO, MCO — expertise senior, interlocution directe.",
+    "og_title": "FiXiS — Consulting SAP",
+    "og_description": "Consulting SAP Finance indépendant. La précision d'un cabinet, l'agilité d'un expert."
+  },
+  "legal": {
+    "title_mentions": "Mentions légales",
+    "title_privacy": "Politique de confidentialité",
+    "back_home": "Retour à l'accueil"
+  }
+}

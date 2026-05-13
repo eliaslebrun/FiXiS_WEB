@@ -1,0 +1,175 @@
+---
+/**
+ * Trust.astro
+ * Social proof — stats block + optional testimonial.
+ * FR-TRUST-01 → 03 | See docs/03-WIREFRAMES.md W7
+ */
+import type { Lang } from '../utils/i18n'
+import { t, tObjectArray } from '../utils/i18n'
+
+interface Props {
+  lang: Lang
+}
+
+interface Stat {
+  value: string
+  label: string
+}
+
+const { lang } = Astro.props
+
+const stats = tObjectArray<Stat>(lang, 'trust.stats')
+
+// Show testimonial only when client provides real content (not placeholders)
+const quoteText   = t(lang, 'trust.quote.text')
+const quoteAuthor = t(lang, 'trust.quote.author')
+const quoteRole   = t(lang, 'trust.quote.role')
+const isPlaceholder = quoteText.startsWith('[')
+---
+
+<section id="trust" class="trust section" aria-label={t(lang, 'trust.headline')}>
+  <div class="container">
+
+    <div class="trust__header">
+      <span class="section-label reveal">{t(lang, 'trust.label')}</span>
+      <h2 class="trust__headline reveal stagger-1">{t(lang, 'trust.headline')}</h2>
+    </div>
+
+    <!-- Stats block -->
+    <div class="trust__stats" role="list" aria-label={lang === 'fr' ? 'Chiffres clés' : 'Key figures'}>
+      {stats.map((stat, i) => (
+        <div class={`trust__stat reveal stagger-${i + 1}`} role="listitem">
+          <span class="trust__stat-value">{stat.value}</span>
+          <span class="trust__stat-label">{stat.label}</span>
+        </div>
+      ))}
+    </div>
+
+    <!-- Divider -->
+    <div class="trust__divider reveal" aria-hidden="true"></div>
+
+    <!-- Testimonial (only shown when real content available) -->
+    {!isPlaceholder && (
+      <blockquote class="trust__quote reveal">
+        <p class="trust__quote-text">"{quoteText}"</p>
+        <footer class="trust__quote-footer">
+          <cite>
+            <span class="trust__quote-author">{quoteAuthor}</span>
+            <span class="trust__quote-role">{quoteRole}</span>
+          </cite>
+        </footer>
+      </blockquote>
+    )}
+
+  </div>
+</section>
+
+<style>
+  .trust {
+    background: var(--color-black);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .trust__header {
+    margin-bottom: var(--space-10);
+  }
+
+  .trust__headline {
+    font-family: var(--font-display);
+    font-size: var(--text-h1);
+    font-weight: 800;
+    line-height: var(--text-h1-lh);
+    letter-spacing: var(--text-h1-ls);
+    color: var(--color-cream);
+  }
+
+  /* Stats */
+  .trust__stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-8);
+    margin-bottom: var(--space-10);
+  }
+
+  .trust__stat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .trust__stat-value {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: var(--color-yellow);
+  }
+
+  .trust__stat-label {
+    font-family: var(--font-display);
+    font-size: var(--text-label);
+    font-weight: 400;
+    letter-spacing: var(--text-label-ls);
+    text-transform: uppercase;
+    color: var(--color-gray-400);
+  }
+
+  /* Divider */
+  .trust__divider {
+    height: 1px;
+    background: var(--color-border);
+    margin-bottom: var(--space-10);
+  }
+
+  /* Testimonial */
+  .trust__quote {
+    max-width: 700px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .trust__quote-text {
+    font-family: var(--font-body);
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--color-cream);
+    margin-bottom: var(--space-5);
+    max-width: none;
+  }
+
+  .trust__quote-footer {
+    font-style: normal;
+  }
+
+  .trust__quote-author {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-body);
+    color: var(--color-cream);
+  }
+
+  .trust__quote-role {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--text-small);
+    color: var(--color-gray-400);
+    letter-spacing: var(--text-label-ls);
+  }
+
+  /* Responsive */
+  @media (min-width: 768px) and (max-width: 1199px) {
+    .trust__stats {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .trust__stats {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-6);
+    }
+  }
+</style>

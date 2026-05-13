@@ -1,0 +1,263 @@
+/* ==========================================================================
+   FiXiS Global Styles
+   @import rules MUST precede all other declarations (CSS spec).
+   ========================================================================== */
+
+/* Google Fonts — must be first @import */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&display=swap');
+
+@import './tokens.css';
+@import './animations.css';
+
+/* Tailwind v4 directive */
+@import 'tailwindcss';
+
+/* ------------------------------------------------------------------
+   Reset & Base
+   ------------------------------------------------------------------ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--text-body-lh);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ------------------------------------------------------------------
+   Typography base
+   ------------------------------------------------------------------ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+p {
+  max-width: 65ch;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ------------------------------------------------------------------
+   Skip to main content (accessibility)
+   ------------------------------------------------------------------ */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-4);
+  z-index: 9999;
+  padding: var(--space-3) var(--space-5);
+  background: var(--color-yellow);
+  color: var(--color-black);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-small);
+  letter-spacing: var(--text-label-ls);
+  text-transform: uppercase;
+  transition: top var(--duration-fast);
+}
+
+.skip-link:focus {
+  top: var(--space-4);
+}
+
+/* ------------------------------------------------------------------
+   Layout utilities
+   ------------------------------------------------------------------ */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--section-px);
+}
+
+.section {
+  padding: var(--section-py) 0;
+}
+
+/* ------------------------------------------------------------------
+   Button — Primary (yellow, sharp)
+   ------------------------------------------------------------------ */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-6);
+  background: var(--color-yellow);
+  color: var(--color-black);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-small);
+  letter-spacing: var(--text-label-ls);
+  text-transform: uppercase;
+  border: none;
+  border-radius: var(--radius-none);
+  cursor: pointer;
+  transition:
+    background var(--duration-fast) var(--ease-out-expo),
+    transform var(--duration-fast);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  background: var(--color-yellow-dark);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-primary:focus-visible {
+  outline: 2px solid var(--color-yellow);
+  outline-offset: 3px;
+}
+
+/* ------------------------------------------------------------------
+   Button — Ghost (transparent/cream border)
+   ------------------------------------------------------------------ */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-6);
+  background: transparent;
+  color: var(--color-cream);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-small);
+  letter-spacing: var(--text-label-ls);
+  text-transform: uppercase;
+  border: 1px solid var(--color-cream);
+  border-radius: var(--radius-none);
+  cursor: pointer;
+  transition:
+    background var(--duration-fast) var(--ease-out-expo),
+    color var(--duration-fast);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-ghost:hover {
+  background: var(--color-cream);
+  color: var(--color-black);
+}
+
+.btn-ghost:focus-visible {
+  outline: 2px solid var(--color-cream);
+  outline-offset: 3px;
+}
+
+/* ------------------------------------------------------------------
+   Section label (small tracked uppercase above headlines)
+   ------------------------------------------------------------------ */
+.section-label {
+  font-family: var(--font-display);
+  font-size: var(--text-label);
+  font-weight: 400;
+  letter-spacing: var(--text-label-ls);
+  text-transform: var(--text-label-transform);
+  color: var(--color-text-muted);
+  display: block;
+  margin-bottom: var(--space-4);
+}
+
+/* ------------------------------------------------------------------
+   Form elements
+   ------------------------------------------------------------------ */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.form-label {
+  font-family: var(--font-display);
+  font-size: var(--text-label);
+  font-weight: 600;
+  letter-spacing: var(--text-label-ls);
+  text-transform: uppercase;
+  color: var(--color-gray-400);
+}
+
+.form-input {
+  width: 100%;
+  padding: var(--space-4);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-sm);
+  color: var(--color-cream);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--text-body-lh);
+  transition: border-color var(--duration-fast);
+  outline: none;
+  appearance: none;
+}
+
+.form-input::placeholder {
+  color: var(--color-gray-400);
+  opacity: 0.6;
+}
+
+.form-input:focus {
+  border-color: var(--color-yellow);
+  box-shadow: 0 0 0 3px rgba(252, 212, 5, 0.15);
+}
+
+.form-input.error {
+  border-color: var(--color-error);
+}
+
+.form-error {
+  font-family: var(--font-display);
+  font-size: var(--text-small);
+  color: var(--color-error);
+  line-height: var(--text-small-lh);
+}
+
+textarea.form-input {
+  resize: vertical;
+  min-height: 8rem;
+}
+
+/* ------------------------------------------------------------------
+   Reduced motion override
+   ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

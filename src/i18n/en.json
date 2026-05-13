@@ -1,0 +1,147 @@
+{
+  "nav": {
+    "services": "Services",
+    "about": "About",
+    "contact": "Contact",
+    "lang_switch": "FR",
+    "menu_open": "Open menu",
+    "menu_close": "Close menu"
+  },
+  "hero": {
+    "label": "SAP Consulting · Independent",
+    "headline_1": "The precision",
+    "headline_2": "of a firm.",
+    "headline_3": "The agility",
+    "headline_4": "of one expert.",
+    "subheadline": "SAP Finance consulting for companies that want to move fast — and right.",
+    "cta": "Let's talk",
+    "scroll_hint": "Scroll"
+  },
+  "services": {
+    "label": "Expertise",
+    "headline": "What I do",
+    "subheadline": "Focused engagements, concrete deliverables, direct communication.",
+    "s4": {
+      "number": "01",
+      "title": "S/4HANA Migration",
+      "description": "Brownfield and greenfield migration management. Current-state analysis, functional mapping, testing and go-live."
+    },
+    "fico": {
+      "number": "02",
+      "title": "SAP Finance & Controlling",
+      "description": "Implementation and optimisation of FI, CO, AA modules. Configuration, user training, functional documentation."
+    },
+    "mco": {
+      "number": "03",
+      "title": "Application Maintenance & Support",
+      "description": "Operational maintenance, incident management, post go-live functional improvements."
+    },
+    "advisory": {
+      "number": "04",
+      "title": "Advisory & Scoping",
+      "description": "SAP landscape audit, project scoping, specification writing. Early-stage engagement to set the right foundations."
+    }
+  },
+  "about": {
+    "label": "About",
+    "headline": "One consultant, not a team",
+    "paragraph_1": "FiXiS is [First Last]. An independent SAP Finance consultant with [X] years of experience on complex projects in enterprise environments.",
+    "paragraph_2": "What that means for you: one point of contact from scoping to go-live, expertise without overhead costs, and genuine availability.",
+    "credentials_label": "Certifications & experience",
+    "credentials": [
+      "SAP Certified — Finance in SAP S/4HANA",
+      "[X]+ SAP projects delivered",
+      "Sectors: [industry, energy, services…]",
+      "Available in France and internationally"
+    ],
+    "photo_alt": "[First Last], SAP Finance consultant at FiXiS"
+  },
+  "trust": {
+    "label": "Track record",
+    "headline": "Results, not promises",
+    "stats": [
+      { "value": "[X]+", "label": "years of SAP experience" },
+      { "value": "[X]+", "label": "projects delivered" },
+      { "value": "[X]+", "label": "users trained" },
+      { "value": "3",    "label": "countries of operation" }
+    ],
+    "logos_label": "Trusted by",
+    "quote": {
+      "text": "[Client quote to be confirmed.]",
+      "author": "[First Last]",
+      "role": "[Role], [Company]"
+    }
+  },
+  "contact": {
+    "label": "Contact",
+    "headline": "A project in mind? Let's talk.",
+    "subheadline": "Fill in a few details — I'll get back to you within 24 hours.",
+    "form": {
+      "name_label": "First & Last Name",
+      "name_placeholder": "Jane Smith",
+      "company_label": "Company",
+      "company_placeholder": "Acme Ltd",
+      "email_label": "Email address",
+      "email_placeholder": "jane@acme.com",
+      "phone_label": "Phone (optional)",
+      "phone_placeholder": "+44 7700 000000",
+      "subject_label": "Subject",
+      "message_label": "Message",
+      "message_placeholder": "Briefly describe your context and needs…",
+      "gdpr_label": "I agree to my data being processed to respond to my request.",
+      "gdpr_link_text": "Learn more",
+      "gdpr_link_href": "/privacy",
+      "submit": "Send message",
+      "submit_loading": "Sending…"
+    },
+    "subjects": {
+      "migration": "S/4HANA Migration",
+      "fico": "SAP FI/CO",
+      "mco": "MCO / Support",
+      "audit": "Audit & Scoping",
+      "other": "Other"
+    },
+    "errors": {
+      "name_required": "Your name is required",
+      "email_required": "Your email is required",
+      "email_invalid": "Invalid email address",
+      "company_required": "Your company name is required",
+      "subject_required": "Please select a subject",
+      "message_required": "A message is required",
+      "gdpr_required": "You must accept to continue",
+      "api_failure": "Something went wrong. Email me directly: contact@fixis.fr"
+    },
+    "success": {
+      "headline": "Message received.",
+      "body": "Thank you for reaching out. I'll reply within 24 hours."
+    },
+    "direct": {
+      "email_label": "Direct email",
+      "email": "contact@fixis.fr",
+      "phone_label": "Phone",
+      "phone": "[+33 X XX XX XX XX]",
+      "linkedin_label": "LinkedIn",
+      "linkedin": "[LinkedIn URL]",
+      "location": "Based in France · Available across Europe",
+      "response_time": "Responds within 24h"
+    }
+  },
+  "footer": {
+    "tagline": "The precision of a firm. The agility of one expert.",
+    "legal_link": "Legal notices",
+    "privacy_link": "Privacy policy",
+    "copyright": "© {year} FiXiS — All rights reserved",
+    "made_with": "Crafted with care"
+  },
+  "meta": {
+    "title": "FiXiS — Independent SAP Finance Consulting",
+    "description": "FiXiS is an independent SAP Finance consulting firm. S/4HANA migration, SAP FI/CO, MCO — senior expertise, direct engagement.",
+    "og_title": "FiXiS — SAP Consulting",
+    "og_description": "Independent SAP Finance consulting. The precision of a firm, the agility of one expert."
+  },
+  "legal": {
+    "title_mentions": "Legal notices",
+    "title_privacy": "Privacy policy",
+    "back_home": "Back to home"
+  }
+}
