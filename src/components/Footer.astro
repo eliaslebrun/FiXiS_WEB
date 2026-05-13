@@ -26,7 +26,7 @@ const copyright = t(lang, 'footer.copyright').replace('{year}', String(year))
         <a href="/#hero" class="footer__logo" aria-label="FiXiS — retour à l'accueil">
           FiXiS
         </a>
-        <p class="footer__tagline">{t(lang, 'footer.tagline')}</p>
+        <p class="footer__tagline" data-i18n="footer.tagline">{t(lang, 'footer.tagline')}</p>
         <a href={`mailto:${t(lang, 'contact.direct.email')}`} class="footer__email">
           {t(lang, 'contact.direct.email')}
         </a>
@@ -38,6 +38,7 @@ const copyright = t(lang, 'footer.copyright').replace('{year}', String(year))
           <a
             href={lang === 'fr' ? '/mentions-legales' : '/legal'}
             class="footer__link"
+            data-i18n="footer.legal_link"
           >
             {t(lang, 'footer.legal_link')}
           </a>
@@ -45,6 +46,7 @@ const copyright = t(lang, 'footer.copyright').replace('{year}', String(year))
           <a
             href={lang === 'fr' ? '/politique-confidentialite' : '/privacy'}
             class="footer__link"
+            data-i18n="footer.privacy_link"
           >
             {t(lang, 'footer.privacy_link')}
           </a>
@@ -52,8 +54,8 @@ const copyright = t(lang, 'footer.copyright').replace('{year}', String(year))
           <LangToggle lang={lang} />
         </nav>
 
-        <p class="footer__copy">{copyright}</p>
-        <p class="footer__made">{t(lang, 'footer.made_with')} ♥</p>
+        <p class="footer__copy" data-i18n-copyright>{copyright}</p>
+        <p class="footer__made"><span data-i18n="footer.made_with">{t(lang, 'footer.made_with')}</span> ♥</p>
       </div>
 
     </div>

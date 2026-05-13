@@ -24,9 +24,9 @@ const { lang } = Astro.props
 
     <!-- Desktop nav links -->
     <nav class="nav__links" aria-label="Navigation principale">
-      <a href="/#services" class="nav__link">{t(lang, 'nav.services')}</a>
-      <a href="/#about"    class="nav__link">{t(lang, 'nav.about')}</a>
-      <a href="/#contact"  class="nav__link">{t(lang, 'nav.contact')}</a>
+      <a href="/#services" class="nav__link" data-i18n="nav.services">{t(lang, 'nav.services')}</a>
+      <a href="/#about"    class="nav__link" data-i18n="nav.about">{t(lang, 'nav.about')}</a>
+      <a href="/#contact"  class="nav__link" data-i18n="nav.contact">{t(lang, 'nav.contact')}</a>
     </nav>
 
     <!-- Right side: lang toggle + hamburger -->
@@ -38,6 +38,7 @@ const { lang } = Astro.props
         class="nav__hamburger"
         id="nav-hamburger"
         aria-label={t(lang, 'nav.menu_open')}
+        data-i18n-al="nav.menu_open"
         aria-expanded="false"
         aria-controls="nav-overlay"
       >
@@ -55,14 +56,15 @@ const { lang } = Astro.props
     class="nav-overlay__close"
     id="nav-overlay-close"
     aria-label={t(lang, 'nav.menu_close')}
+    data-i18n-al="nav.menu_close"
   >
     ✕
   </button>
 
   <nav class="nav-overlay__links" aria-label="Navigation mobile">
-    <a href="/#services" class="nav-overlay__link">{t(lang, 'nav.services')}</a>
-    <a href="/#about"    class="nav-overlay__link">{t(lang, 'nav.about')}</a>
-    <a href="/#contact"  class="nav-overlay__link">{t(lang, 'nav.contact')}</a>
+    <a href="/#services" class="nav-overlay__link" data-i18n="nav.services">{t(lang, 'nav.services')}</a>
+    <a href="/#about"    class="nav-overlay__link" data-i18n="nav.about">{t(lang, 'nav.about')}</a>
+    <a href="/#contact"  class="nav-overlay__link" data-i18n="nav.contact">{t(lang, 'nav.contact')}</a>
     <div class="nav-overlay__lang">
       <LangToggle lang={lang} />
     </div>

@@ -32,13 +32,13 @@ const subjects = [
 
       <!-- LEFT — context copy + direct contact -->
       <div class="contact__info">
-        <span class="section-label reveal">{t(lang, 'contact.label')}</span>
+        <span class="section-label reveal" data-i18n="contact.label">{t(lang, 'contact.label')}</span>
 
-        <h2 class="contact__headline reveal stagger-1">
+        <h2 class="contact__headline reveal stagger-1" data-i18n="contact.headline">
           {t(lang, 'contact.headline')}
         </h2>
 
-        <p class="contact__sub reveal stagger-2">
+        <p class="contact__sub reveal stagger-2" data-i18n="contact.subheadline">
           {t(lang, 'contact.subheadline')}
         </p>
 
@@ -52,7 +52,7 @@ const subjects = [
               <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
             </svg>
             <div>
-              <span class="contact__direct-label">{t(lang, 'contact.direct.email_label')}</span>
+              <span class="contact__direct-label" data-i18n="contact.direct.email_label">{t(lang, 'contact.direct.email_label')}</span>
               <a
                 href={`mailto:${t(lang, 'contact.direct.email')}`}
                 class="contact__direct-value"
@@ -68,7 +68,7 @@ const subjects = [
               <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
             </svg>
             <div>
-              <span class="contact__direct-label">{t(lang, 'contact.direct.phone_label')}</span>
+              <span class="contact__direct-label" data-i18n="contact.direct.phone_label">{t(lang, 'contact.direct.phone_label')}</span>
               <a
                 href={`tel:${t(lang, 'contact.direct.phone').replace(/\s/g, '')}`}
                 class="contact__direct-value"
@@ -84,7 +84,7 @@ const subjects = [
               <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/>
             </svg>
             <div>
-              <span class="contact__direct-label">{t(lang, 'contact.direct.linkedin_label')}</span>
+              <span class="contact__direct-label" data-i18n="contact.direct.linkedin_label">{t(lang, 'contact.direct.linkedin_label')}</span>
               <a
                 href={t(lang, 'contact.direct.linkedin')}
                 class="contact__direct-value"
@@ -101,14 +101,14 @@ const subjects = [
             <svg class="contact__direct-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>
             </svg>
-            <span class="contact__direct-value">{t(lang, 'contact.direct.location')}</span>
+            <span class="contact__direct-value" data-i18n="contact.direct.location">{t(lang, 'contact.direct.location')}</span>
           </li>
 
           <li class="contact__direct-item contact__direct-item--accent reveal stagger-5">
             <svg class="contact__direct-icon contact__direct-icon--accent" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>
             </svg>
-            <span class="contact__direct-value contact__direct-value--accent">
+            <span class="contact__direct-value contact__direct-value--accent" data-i18n="contact.direct.response_time">
               {t(lang, 'contact.direct.response_time')}
             </span>
           </li>
@@ -134,10 +134,10 @@ const subjects = [
               <circle class="form-success__circle" cx="26" cy="26" r="23" stroke="#FCD405" stroke-width="2"/>
               <path class="form-success__tick" d="M14 26l8 8 16-16" stroke="#FCD405" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <h3 id="success-headline" class="form-success__headline" tabindex="-1">
+            <h3 id="success-headline" class="form-success__headline" tabindex="-1" data-i18n="contact.success.headline">
               {t(lang, 'contact.success.headline')}
             </h3>
-            <p class="form-success__body">{t(lang, 'contact.success.body')}</p>
+            <p class="form-success__body" data-i18n="contact.success.body">{t(lang, 'contact.success.body')}</p>
           </div>
         </div>
 
@@ -160,12 +160,13 @@ const subjects = [
 
           <!-- Subject chips -->
           <fieldset class="form__fieldset">
-            <legend class="form-label">{t(lang, 'contact.form.subject_label')}</legend>
+            <legend class="form-label" data-i18n="contact.form.subject_label">{t(lang, 'contact.form.subject_label')}</legend>
             <div
               class="chips"
               role="listbox"
               aria-label={t(lang, 'contact.form.subject_label')}
               id="chips-container"
+              data-i18n-al="contact.form.subject_label"
             >
               {subjects.map(({ key }) => (
                 <button
@@ -175,6 +176,7 @@ const subjects = [
                   aria-selected="false"
                   data-subject-key={key}
                   data-subject-value={t(lang, `contact.subjects.${key}`)}
+                  data-i18n={`contact.subjects.${key}`}
                 >
                   {t(lang, `contact.subjects.${key}`)}
                 </button>
@@ -187,7 +189,7 @@ const subjects = [
           <div class="form__row">
             <div class="form-field">
               <label class="form-label" for="contact-name">
-                {t(lang, 'contact.form.name_label')}
+                <span data-i18n="contact.form.name_label">{t(lang, 'contact.form.name_label')}</span>
                 <span class="form__required" aria-label="requis">*</span>
               </label>
               <input
@@ -196,6 +198,7 @@ const subjects = [
                 name="name"
                 class="form-input"
                 placeholder={t(lang, 'contact.form.name_placeholder')}
+                data-i18n-ph="contact.form.name_placeholder"
                 autocomplete="name"
                 required
                 aria-required="true"
@@ -206,7 +209,7 @@ const subjects = [
 
             <div class="form-field">
               <label class="form-label" for="contact-company">
-                {t(lang, 'contact.form.company_label')}
+                <span data-i18n="contact.form.company_label">{t(lang, 'contact.form.company_label')}</span>
                 <span class="form__required" aria-label="requis">*</span>
               </label>
               <input
@@ -215,6 +218,7 @@ const subjects = [
                 name="company"
                 class="form-input"
                 placeholder={t(lang, 'contact.form.company_placeholder')}
+                data-i18n-ph="contact.form.company_placeholder"
                 autocomplete="organization"
                 required
                 aria-required="true"
@@ -228,7 +232,7 @@ const subjects = [
           <div class="form__row">
             <div class="form-field">
               <label class="form-label" for="contact-email">
-                {t(lang, 'contact.form.email_label')}
+                <span data-i18n="contact.form.email_label">{t(lang, 'contact.form.email_label')}</span>
                 <span class="form__required" aria-label="requis">*</span>
               </label>
               <input
@@ -237,6 +241,7 @@ const subjects = [
                 name="email"
                 class="form-input"
                 placeholder={t(lang, 'contact.form.email_placeholder')}
+                data-i18n-ph="contact.form.email_placeholder"
                 autocomplete="email"
                 required
                 aria-required="true"
@@ -247,7 +252,7 @@ const subjects = [
 
             <div class="form-field">
               <label class="form-label" for="contact-phone">
-                {t(lang, 'contact.form.phone_label')}
+                <span data-i18n="contact.form.phone_label">{t(lang, 'contact.form.phone_label')}</span>
               </label>
               <input
                 type="tel"
@@ -255,6 +260,7 @@ const subjects = [
                 name="phone"
                 class="form-input"
                 placeholder={t(lang, 'contact.form.phone_placeholder')}
+                data-i18n-ph="contact.form.phone_placeholder"
                 autocomplete="tel"
               />
             </div>
@@ -263,7 +269,7 @@ const subjects = [
           <!-- Message -->
           <div class="form-field">
             <label class="form-label" for="contact-message">
-              {t(lang, 'contact.form.message_label')}
+              <span data-i18n="contact.form.message_label">{t(lang, 'contact.form.message_label')}</span>
               <span class="form__required" aria-label="requis">*</span>
             </label>
             <textarea
@@ -272,6 +278,7 @@ const subjects = [
               class="form-input form-input--textarea"
               rows="5"
               placeholder={t(lang, 'contact.form.message_placeholder')}
+              data-i18n-ph="contact.form.message_placeholder"
               required
               aria-required="true"
               aria-describedby="message-error"
@@ -292,13 +299,14 @@ const subjects = [
                 aria-describedby="gdpr-error"
               />
               <label class="gdpr-label" for="contact-gdpr">
-                {t(lang, 'contact.form.gdpr_label')}
+                <span data-i18n="contact.form.gdpr_label">{t(lang, 'contact.form.gdpr_label')}</span>
                 {' '}
                 <a
                   href={t(lang, 'contact.form.gdpr_link_href')}
                   target="_blank"
                   rel="noopener noreferrer"
                   class="gdpr-link"
+                  data-i18n="contact.form.gdpr_link_text"
                 >
                   {t(lang, 'contact.form.gdpr_link_text')}
                 </a>
@@ -317,7 +325,7 @@ const subjects = [
               id="form-submit"
               class="btn-primary form__submit-btn"
             >
-              <span id="submit-label">{t(lang, 'contact.form.submit')}</span>
+              <span id="submit-label" data-i18n="contact.form.submit">{t(lang, 'contact.form.submit')}</span>
               →
             </button>
           </div>
@@ -343,7 +351,29 @@ const subjects = [
   const apiErrorEl  = document.getElementById('api-error') as HTMLElement
   const chips       = document.querySelectorAll<HTMLButtonElement>('.chip')
 
-  const lang: Lang = (form?.dataset.lang as Lang) ?? 'fr'
+  // lang is kept as a mutable variable so it stays in sync when the user
+  // switches language. The global applyTranslations() in BaseLayout updates
+  // form.dataset.lang first, then dispatches 'fixis:lang-change'.
+  let lang: Lang = (form?.dataset.lang as Lang) ?? 'fr'
+
+  // Keep lang in sync whenever the user switches language
+  window.addEventListener('fixis:lang-change', (e) => {
+    const newLang = (e as CustomEvent<{ lang: Lang }>).detail.lang
+    lang = newLang
+
+    // Update data-subject-value on each chip so selected subject reflects new lang
+    chips.forEach((chip) => {
+      const subjectKey = chip.dataset.subjectKey
+      if (subjectKey) {
+        const newValue = t(newLang, `contact.subjects.${subjectKey}`)
+        chip.dataset.subjectValue = newValue
+        // If this chip is currently selected, update selectedSubject too
+        if (chip.getAttribute('aria-selected') === 'true') {
+          selectedSubject = newValue
+        }
+      }
+    })
+  })
 
   let selectedSubject = ''
 

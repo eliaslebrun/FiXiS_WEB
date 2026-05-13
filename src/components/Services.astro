@@ -26,9 +26,9 @@ const services = [
   <div class="container">
     <!-- Section header -->
     <div class="services__header">
-      <span class="section-label reveal">{t(lang, 'services.label')}</span>
-      <h2 class="services__headline reveal stagger-1">{t(lang, 'services.headline')}</h2>
-      <p class="services__sub reveal stagger-2">{t(lang, 'services.subheadline')}</p>
+      <span class="section-label reveal" data-i18n="services.label">{t(lang, 'services.label')}</span>
+      <h2 class="services__headline reveal stagger-1" data-i18n="services.headline">{t(lang, 'services.headline')}</h2>
+      <p class="services__sub reveal stagger-2" data-i18n="services.subheadline">{t(lang, 'services.subheadline')}</p>
     </div>
 
     <!-- Cards grid -->
@@ -39,6 +39,7 @@ const services = [
           title={t(lang, `services.${key}.title`)}
           description={t(lang, `services.${key}.description`)}
           staggerIndex={staggerIndex}
+          i18nKey={`services.${key}`}
         />
       ))}
     </div>

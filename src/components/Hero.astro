@@ -19,26 +19,26 @@ const { lang } = Astro.props
   <div class="hero__inner container">
     <!-- Left column — copy -->
     <div class="hero__copy">
-      <span class="hero__label section-label hero-animate">
+      <span class="hero__label section-label hero-animate" data-i18n="hero.label">
         {t(lang, 'hero.label')}
       </span>
 
       <h1 class="hero__headline hero-animate hero-animate-delay-1">
-        <span class="hero__headline-line">{t(lang, 'hero.headline_1')}</span>
-        <span class="hero__headline-line">{t(lang, 'hero.headline_2')}</span>
-        <span class="hero__headline-line">{t(lang, 'hero.headline_3')}</span>
-        <span class="hero__headline-line hero__headline-line--accent">
+        <span class="hero__headline-line" data-i18n="hero.headline_1">{t(lang, 'hero.headline_1')}</span>
+        <span class="hero__headline-line" data-i18n="hero.headline_2">{t(lang, 'hero.headline_2')}</span>
+        <span class="hero__headline-line" data-i18n="hero.headline_3">{t(lang, 'hero.headline_3')}</span>
+        <span class="hero__headline-line hero__headline-line--accent" data-i18n="hero.headline_4">
           {t(lang, 'hero.headline_4')}
         </span>
       </h1>
 
-      <p class="hero__sub hero-animate hero-animate-delay-2">
+      <p class="hero__sub hero-animate hero-animate-delay-2" data-i18n="hero.subheadline">
         {t(lang, 'hero.subheadline')}
       </p>
 
       <div class="hero__cta hero-animate hero-animate-delay-3">
         <Button href="/#contact" variant="primary">
-          {t(lang, 'hero.cta')} →
+          <span data-i18n="hero.cta">{t(lang, 'hero.cta')}</span> →
         </Button>
       </div>
     </div>
@@ -86,7 +86,7 @@ const { lang } = Astro.props
 
   <!-- Scroll hint -->
   <div class="hero__scroll-hint" aria-hidden="true" id="scroll-hint">
-    <span class="hero__scroll-text">{t(lang, 'hero.scroll_hint')}</span>
+    <span class="hero__scroll-text" data-i18n="hero.scroll_hint">{t(lang, 'hero.scroll_hint')}</span>
     <span class="hero__scroll-arrow">↓</span>
   </div>
 </section>

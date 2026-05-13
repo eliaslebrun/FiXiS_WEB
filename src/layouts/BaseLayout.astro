@@ -80,22 +80,113 @@ const currentYear     = new Date().getFullYear()
 
   <body>
     <!-- Skip to main content (accessibility) -->
-    <a class="skip-link" href="#main">
+    <a class="skip-link" href="#main" data-i18n-skip>
       {lang === 'fr' ? 'Aller au contenu principal' : 'Skip to main content'}
     </a>
 
     <slot />
 
-    <!-- Language initialisation script — runs before first paint -->
+    <!-- ================================================================
+         Client-side i18n system
+         Runs on every page load. Reads the stored language and updates
+         all [data-i18n] elements so language switching works without
+         a server re-render.
+         ================================================================ -->
     <script>
+      import type { Lang } from '../utils/i18n'
       import { getLang, setLang } from '../utils/i18n'
+      import fr from '../i18n/fr.json'
+      import en from '../i18n/en.json'
 
-      // On first load: apply stored / detected language
-      const lang = getLang()
-      document.documentElement.lang = lang
+      const translations: Record<string, Record<string, unknown>> = { fr, en }
 
-      // Expose globally for components that haven't loaded yet
-      ;(window as any).__fixisLang = lang
+      /** Resolve a dot-notation key against a translation object. */
+      function resolve(lang: Lang, key: string): string {
+        const parts = key.split('.')
+        let node: unknown = translations[lang]
+        for (const p of parts) {
+          if (node === null || typeof node !== 'object') return key
+          node = (node as Record<string, unknown>)[p]
+        }
+        return typeof node === 'string' ? node : key
+      }
+
+      /**
+       * Walk the DOM and apply translations for the given language.
+       * Called on first paint and every time the user switches language.
+       */
+      function applyTranslations(lang: Lang): void {
+        // 1. html[lang] attribute
+        document.documentElement.lang = lang
+
+        // 2. data-i18n → textContent
+        document.querySelectorAll<HTMLElement>('[data-i18n]').forEach((el) => {
+          const key = el.dataset.i18n!
+          el.textContent = resolve(lang, key)
+        })
+
+        // 3. data-i18n-ph → placeholder
+        document.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>(
+          '[data-i18n-ph]'
+        ).forEach((el) => {
+          const key = (el as HTMLElement).dataset.i18nPh!
+          el.placeholder = resolve(lang, key)
+        })
+
+        // 4. data-i18n-al → aria-label
+        document.querySelectorAll<HTMLElement>('[data-i18n-al]').forEach((el) => {
+          el.setAttribute('aria-label', resolve(lang, el.dataset.i18nAl!))
+        })
+
+        // 5. data-i18n-title → title
+        document.querySelectorAll<HTMLElement>('[data-i18n-title]').forEach((el) => {
+          el.setAttribute('title', resolve(lang, el.dataset.i18nTitle!))
+        })
+
+        // 6. Skip link
+        const skipLink = document.querySelector('[data-i18n-skip]')
+        if (skipLink) {
+          skipLink.textContent =
+            lang === 'fr' ? 'Aller au contenu principal' : 'Skip to main content'
+        }
+
+        // 7. Lang-toggle buttons — update text + data-other-lang + aria/title
+        document.querySelectorAll<HTMLElement>('.lang-toggle').forEach((btn) => {
+          const otherLang: Lang = lang === 'fr' ? 'en' : 'fr'
+          btn.dataset.otherLang = otherLang
+          btn.textContent = resolve(lang, 'nav.lang_switch')
+          const altLabel =
+            lang === 'fr' ? 'Switch to English' : 'Passer en français'
+          btn.setAttribute('aria-label', altLabel)
+          btn.setAttribute('title', altLabel)
+        })
+
+        // 8. Footer copyright (contains {year})
+        const copyrightEl = document.querySelector('[data-i18n-copyright]')
+        if (copyrightEl) {
+          const year = new Date().getFullYear()
+          copyrightEl.textContent = resolve(lang, 'footer.copyright').replace(
+            '{year}',
+            String(year)
+          )
+        }
+
+        // 9. Contact form — keep data-lang in sync so validation messages use the right lang
+        const contactForm = document.getElementById('contact-form') as HTMLFormElement | null
+        if (contactForm) contactForm.dataset.lang = lang
+
+        // 10. Expose globally
+        ;(window as any).__fixisLang = lang
+      }
+
+      // Apply on first load (picks up stored preference / browser language)
+      applyTranslations(getLang())
+
+      // Re-apply whenever the user switches language
+      window.addEventListener('fixis:lang-change', (e) => {
+        const { lang } = (e as CustomEvent<{ lang: Lang }>).detail
+        applyTranslations(lang)
+      })
     </script>
 
     <!-- Scroll-reveal IntersectionObserver -->

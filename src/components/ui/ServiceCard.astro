@@ -11,9 +11,11 @@ interface Props {
   title: string
   description: string
   staggerIndex?: number
+  /** i18n base key, e.g. "services.s4" — used for data-i18n attributes */
+  i18nKey?: string
 }
 
-const { number, title, description, staggerIndex = 0 } = Astro.props
+const { number, title, description, staggerIndex = 0, i18nKey } = Astro.props
 ---
 
 <article
@@ -21,8 +23,8 @@ const { number, title, description, staggerIndex = 0 } = Astro.props
   aria-label={title}
 >
   <span class="service-card__number" aria-hidden="true">{number}</span>
-  <h3 class="service-card__title">{title}</h3>
-  <p class="service-card__desc">{description}</p>
+  <h3 class="service-card__title" data-i18n={i18nKey ? `${i18nKey}.title` : undefined}>{title}</h3>
+  <p class="service-card__desc" data-i18n={i18nKey ? `${i18nKey}.description` : undefined}>{description}</p>
 </article>
 
 <style>

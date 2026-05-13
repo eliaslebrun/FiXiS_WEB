@@ -32,10 +32,10 @@ const label = t(lang, 'nav.lang_switch')
   document.querySelectorAll('.lang-toggle').forEach((btn) => {
     btn.addEventListener('click', () => {
       const next = (btn as HTMLElement).dataset.otherLang as Lang
+      // setLang persists the choice and dispatches 'fixis:lang-change'.
+      // The global applyTranslations() listener in BaseLayout picks it up
+      // and updates all [data-i18n] elements — no page reload needed.
       setLang(next)
-      // Reload page to re-render Astro components with new lang
-      // In a fully client-side app this would be reactive; here we reload.
-      window.location.reload()
     })
   })
 </script>

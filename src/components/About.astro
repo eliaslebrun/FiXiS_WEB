@@ -32,27 +32,27 @@ const credentials = tArray(lang, 'about.credentials')
 
       <!-- Right: copy -->
       <div class="about__copy">
-        <span class="section-label about__label reveal">{t(lang, 'about.label')}</span>
+        <span class="section-label about__label reveal" data-i18n="about.label">{t(lang, 'about.label')}</span>
 
-        <h2 class="about__headline reveal stagger-1">
+        <h2 class="about__headline reveal stagger-1" data-i18n="about.headline">
           {t(lang, 'about.headline')}
         </h2>
 
         <div class="about__paragraphs">
-          <p class="about__para reveal stagger-2">{t(lang, 'about.paragraph_1')}</p>
-          <p class="about__para reveal stagger-3">{t(lang, 'about.paragraph_2')}</p>
+          <p class="about__para reveal stagger-2" data-i18n="about.paragraph_1">{t(lang, 'about.paragraph_1')}</p>
+          <p class="about__para reveal stagger-3" data-i18n="about.paragraph_2">{t(lang, 'about.paragraph_2')}</p>
         </div>
 
         <!-- Credentials list -->
         <div class="about__creds reveal stagger-4">
-          <span class="about__creds-label section-label">
+          <span class="about__creds-label section-label" data-i18n="about.credentials_label">
             {t(lang, 'about.credentials_label')}
           </span>
           <ul class="about__creds-list" role="list">
-            {credentials.map((cred) => (
+            {credentials.map((cred, i) => (
               <li class="about__cred-item">
                 <span class="about__cred-dot" aria-hidden="true">●</span>
-                {cred}
+                <span data-i18n={`about.credentials.${i}`}>{cred}</span>
               </li>
             ))}
           </ul>
