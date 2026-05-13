@@ -45,16 +45,16 @@
   "about": {
     "label": "À propos",
     "headline": "Un consultant, pas une équipe",
-    "paragraph_1": "FiXiS, c'est [Prénom Nom]. Consultant SAP Finance indépendant avec [X] ans d'expérience sur des projets complexes en environnement grand compte.",
+    "paragraph_1": "FiXiS, c'est Gildas Lebrun. Consultant SAP Finance indépendant avec [X] ans d'expérience sur des projets complexes en environnement grand compte.",
     "paragraph_2": "Ce que ça change pour vous : un seul interlocuteur du cadrage au go-live, une expertise sans frais de structure, et une vraie disponibilité.",
     "credentials_label": "Certifications & expérience",
     "credentials": [
       "SAP Certified — Finance in SAP S/4HANA",
       "[X]+ projets SAP livrés",
-      "Secteurs : [industrie, énergie, services…]",
+      "Secteurs : industrie, énergie, services…",
       "Intervention en France et à l'international"
     ],
-    "photo_alt": "[Prénom Nom], consultant SAP Finance chez FiXiS"
+    "photo_alt": "Gildas Lebrun, consultant SAP Finance chez FiXiS"
   },
   "trust": {
     "label": "Références",
@@ -67,9 +67,9 @@
     ],
     "logos_label": "Ils m'ont fait confiance",
     "quote": {
-      "text": "[Citation du client à confirmer.]",
-      "author": "[Prénom Nom]",
-      "role": "[Poste], [Entreprise]"
+      "text": "J'adore ce mec !",
+      "author": "Claude Makelele",
+      "role": "CEO, Total"
     }
   },
   "contact": {

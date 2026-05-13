@@ -45,16 +45,16 @@
   "about": {
     "label": "About",
     "headline": "One consultant, not a team",
-    "paragraph_1": "FiXiS is [First Last]. An independent SAP Finance consultant with [X] years of experience on complex projects in enterprise environments.",
+    "paragraph_1": "FiXiS is Gildas Lebrun. An independent SAP Finance consultant with [X] years of experience on complex projects in enterprise environments.",
     "paragraph_2": "What that means for you: one point of contact from scoping to go-live, expertise without overhead costs, and genuine availability.",
     "credentials_label": "Certifications & experience",
     "credentials": [
       "SAP Certified — Finance in SAP S/4HANA",
       "[X]+ SAP projects delivered",
-      "Sectors: [industry, energy, services…]",
+      "Sectors: industry, energy, services…",
       "Available in France and internationally"
     ],
-    "photo_alt": "[First Last], SAP Finance consultant at FiXiS"
+    "photo_alt": "Gildas Lebrun, SAP Finance consultant at FiXiS"
   },
   "trust": {
     "label": "Track record",
@@ -67,9 +67,9 @@
     ],
     "logos_label": "Trusted by",
     "quote": {
-      "text": "[Client quote to be confirmed.]",
-      "author": "[First Last]",
-      "role": "[Role], [Company]"
+      "text": "I love this guy !",
+      "author": "Claude Makelele",
+      "role": "CEO, Total"
     }
   },
   "contact": {
@@ -119,9 +119,9 @@
       "email_label": "Direct email",
       "email": "contact@fixis.fr",
       "phone_label": "Phone",
-      "phone": "[+33 X XX XX XX XX]",
+      "phone": "+33 6 13 24 70 16",
       "linkedin_label": "LinkedIn",
-      "linkedin": "[LinkedIn URL]",
+      "linkedin": "https://www.linkedin.com/in/gildas-l-87a7972b/",
       "location": "Based in France · Available across Europe",
       "response_time": "Responds within 24h"
     }
