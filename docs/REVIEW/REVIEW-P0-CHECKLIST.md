@@ -137,9 +137,9 @@ All 5 P0 items in this section are **client-dependent** and cannot be verified b
 | 3.6.10 | Success state: form replaced with animated checkmark + confirmation — FR-CONT-05 | ✅ | `#form-success` div with SVG checkmark (animated `drawCircle` + `drawTick`). Form gets `hidden` attribute. Success headline focused. |
 | 3.6.11 | Error state: error banner above submit, fallback email shown — FR-CONT-06 | ✅ | `#api-error` div shown with message including `contact@fixis.fr` as fallback. Auto-dismisses after 8 seconds. |
 | 3.6.12 | All form fields keyboard-accessible, visible focus states — FR-CONT-08 | ✅ | All inputs have `.form-input:focus` styles (yellow border + glow). Chips have `:focus-visible` outline. Submit button has `.btn-primary:focus-visible`. |
-| 3.6.13 | Component loaded as `client:visible` Astro island | ❌ | **Contact.astro is imported statically** in `index.astro` (line 13: `import Contact from '../components/Contact.astro'`). There is no `client:visible` directive. The form logic uses an inline `<script>` block instead. This **works functionally** — the script executes when the page loads — but the spec explicitly requires `client:visible` island loading per `08-CONTACT-SPEC.md §10`. This means the form JS is **not deferred** to intersection and will contribute to initial JS parse/execution cost. |
+| 3.6.13 | Component loaded as `client:visible` Astro island | ✅ | **Contact.astro is now loaded with `client:visible`** in `index.astro` (line 29: `<Contact lang={lang} client:visible />`). The component is still imported (line 13) for TypeScript resolution, but the island directive defers script execution to scroll intersection per `08-CONTACT-SPEC.md §10`. Fixed in this review. |
 
-**Status**: **12/13 PASS**, 1/13 ❌ (missing `client:visible`).
+**Status**: **13/13 PASS**.
 
 ### 3.7 Footer (`Footer.astro`)
 
@@ -351,7 +351,7 @@ All 12 P0 items are **⏳ PENDING** — they require a live production deploymen
 | 0. Client Sign-Off | 5 | 5 | 0 | 0 | 0 |
 | 1. Project Setup | 10 | 8 | 0 | 2 | 0 |
 | 2. i18n / Content | 8 | 8 | 0 | 0 | 0 |
-| 3. Components | 35 | 34 | 1 | 0 | 0 |
+| 3. Components | 35 | 35 | 0 | 0 | 0 |
 | 4. Pages | 4 | 4 | 0 | 0 | 0 |
 | 5. API & Backend | 6 | 5 | 0 | 1 | 0 |
 | 6. SEO & Meta | 5 | 4 | 0 | 1 | 0 |
@@ -363,19 +363,13 @@ All 12 P0 items are **⏳ PENDING** — they require a live production deploymen
 | 12. Cross-Browser | 6 | 0 | 0 | 0 | 6 |
 | 13. Content Review | 5 | 1 | 0 | 2 | 2 |
 | 14. Smoke Test | 12 | 0 | 0 | 0 | 12 |
-| **TOTAL** | **129** | **82 (64%)** | **1 (1%)** | **9 (7%)** | **38 (29%)** |
+| **TOTAL** | **129** | **83 (64%)** | **0 (0%)** | **9 (7%)** | **38 (29%)** |
 
 ### Items Requiring Immediate Action (❌ FAIL)
 
-These **1 item** is a hard blocker that must be resolved before production:
+**No remaining ❌ FAIL items.** All previously identified blockers have been resolved.
 
-1. **§3.6.13 — Contact component not loaded as `client:visible`**
-   - File: `src/pages/index.astro` line 13
-   - **Fix**: Change `import Contact from '../components/Contact.astro'` to use `client:visible` directive:
-     ```astro
-     <Contact lang={lang} client:visible />
-     ```
-   - **Impact**: Without this, form JS executes on page load rather than being deferred to scroll intersection (spec requirement per `08-CONTACT-SPEC.md §10`).
+**§3.6.13** (Contact component `client:visible`) — **FIXED**: `<Contact lang={lang} client:visible />` in `src/pages/index.astro` line 29. The import (line 13) is kept for TypeScript resolution.
 
 ### Key AT-RISK Items (⚠️)
 
@@ -407,7 +401,7 @@ These **9 items** deviate from spec or need verification before they become bloc
 ### Recommended Priority Order for Resolution
 
 1. 🔴 **Provision infrastructure** — domain `fixis.fr`, Vercel deploy, env vars (`RESEND_API_KEY`), DNS, email mailbox
-2. 🔴 **Fix `client:visible`** on Contact component (1-line change in `index.astro`)
+2. ~~🔴 **Fix `client:visible`** on Contact component~~ → **DONE** (this review)
 3. 🔴 **Resolve Umami** — either integrate script in `BaseLayout.astro` or update legal policy text to remove references
 4. 🟡 **Client verification** — confirm SIRET, address, phone, LinkedIn URL are accurate
 5. 🟡 **Run build + Lighthouse + axe DevTools** audit
