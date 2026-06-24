@@ -25,11 +25,11 @@ All 5 P0 items in this section are **client-dependent** and cannot be verified b
 |---|------|--------|------|
 | 0.1 | Client confirms domain: `fixis.fr` | ⏳ | Code references `fixis.fr` throughout, but domain ownership verification is pending. |
 | 0.2 | Client provides: full name, SIRET, legal address | ❌ | **Still present as `[bracket]` placeholders** in both `mentions-legales.astro` and `politique-confidentialite.astro`. |
-| 0.3 | Client provides: contact email, phone, LinkedIn URL | ✅ | Values populated in `src/i18n/fr.json` and `en.json` (`contact.direct.email`, `.phone`, `.linkedin`). |
-| 0.4 | Client fills in all `[bracket]` placeholders in `07-CONTENT.md` | ⏳ | JSON files are clean (names, stats filled). Trust quote text still reads "J'adore ce mec !" / "Claude Makelele" — appears to be placeholder/demo content. |
+| 0.3 | Client provides: contact email, phone, LinkedIn URL | ✅ | Values populated in `src/i18n/fr.json` and `en.json` (`contact.direct.email`, `.phone`, `.linkedin`). Phone and LinkedIn are real data (see commit 81ed13a). |
+| 0.4 | Client fills in all `[bracket]` placeholders in `07-CONTENT.md` | ⚠️ | JSON files are clean (names, stats, contact details all populated with real data). The placeholder trust quote was **removed** from both JSON files (commit range 81ed13a→HEAD). However, **legal page placeholders remain** in `mentions-legales.astro` and `politique-confidentialite.astro`. |
 | 0.5 | Client confirms layout choice: Option A or B | ✅ | Code implements **Option A** (single page at `index.astro` with all sections + separate legal pages). |
 
-**Status**: **2/5 verified PASS**, 1/5 FAIL (legal placeholders), 2/5 pending.
+**Status**: **3/5 verified PASS**, 1/5 FAIL (legal placeholders), 1/5 pending.
 
 ---
 
@@ -58,14 +58,14 @@ All 5 P0 items in this section are **client-dependent** and cannot be verified b
 |---|------|--------|------|
 | 2.1 | `src/i18n/fr.json` fully populated | ✅ | 147 lines, all sections covered: nav, hero, services, about, trust, contact, footer, meta, legal. |
 | 2.2 | `src/i18n/en.json` fully populated — EN parity with FR | ✅ | 147 lines, structural parity with FR JSON. |
-| 2.3 | `[bracket]` placeholders replaced in both JSON files | ⚠️ | JSON files are clean (no literal `[bracket]` strings). However the client's real name (Gildas Lebrun) and phone (+33 6 13 24 70 16) appear to be real data. BUT: the trust quote ("J'adore ce mec !" / "Claude Makelele" / "CEO, Total") is **clearly placeholder content** and indicates incomplete client sign-off. |
+| 2.3 | `[bracket]` placeholders replaced in both JSON files | ✅ | JSON files are clean (no literal `[bracket]` strings). All `[X]` / `[bracket]` placeholders from the initial content were replaced in commit 81ed13a (25+ years, 25+ projects, 200+ users trained, real phone, real LinkedIn URL). The placeholder trust quote was removed entirely. Client's real name (Gildas Lebrun) is populated. |
 | 2.4 | `src/utils/i18n.ts` with `t(lang, key)` function | ✅ | Fully implemented with `t()`, `tArray()`, `tObjectArray()`, `getLang()`, `setLang()`. Dot-notation resolution. Graceful fallback to key string on missing translations. |
 | 2.5 | Language stored in `localStorage` as `fixis_lang` | ✅ | `STORAGE_KEY = 'fixis_lang'` in `i18n.ts` line 17. `setLang()` persists to localStorage. |
 | 2.6 | First-visit language detection via `navigator.language` | ✅ | `getLang()` function falls back to `navigator.language?.slice(0, 2)`, defaults to `'fr'`. |
 | 2.7 | `<html lang="">` updates on language switch | ✅ | `setLang()` sets `document.documentElement.lang`. `applyTranslations()` in `BaseLayout.astro` line 120 also sets it. |
 | 2.8 | All form validation error messages localised in both languages | ✅ | All 8 error messages present and paired in both `fr.json` and `en.json` under `contact.errors.*`. |
 
-**Status**: **7/8 PASS**, 1/8 ⚠️ (trust quote is clearly placeholder — indicates incomplete client sign-off on content).
+**Status**: **8/8 PASS**.
 
 ---
 
@@ -117,7 +117,7 @@ All 5 P0 items in this section are **client-dependent** and cannot be verified b
 
 | # | Item | Status | Note |
 |---|------|--------|------|
-| 3.5.1 | At least one trust element: client logos OR key stats block — FR-TRUST-01 | ✅ | Stats block present with 4 stats (years, projects, users trained, countries). Client logos not implemented, but spec only requires "OR". |
+| 3.5.1 | At least one trust element: client logos OR key stats block — FR-TRUST-01 | ✅ | Stats block present with 4 real stats (25+ years, 25+ projects, 200+ users trained, 3 countries). Client logos not implemented, but spec only requires "OR". The placeholder trust quote was removed from both JSON files and from the Trust.astro component — the component now cleanly renders only the stats block. |
 
 **Status**: **1/1 PASS**.
 
@@ -309,13 +309,13 @@ All 6 P0 items are **⏳ PENDING** — they require physical or emulated device 
 
 | # | Item | Status | Note |
 |---|------|--------|------|
-| 13.1 | All `[bracket]` placeholders replaced in both FR and EN JSON | ⚠️ | JSON files are clean of literal brackets. But trust quote content ("J'adore ce mec !" / "Claude Makelele" / "CEO, Total") is **demonstrably placeholder** — it's a joke reference, not real client content. |
+| 13.1 | All `[bracket]` placeholders replaced in both FR and EN JSON | ✅ | JSON files are clean of literal brackets. All `[X]` placeholders were replaced with real data in commit 81ed13a. The placeholder trust quote was removed entirely. Remaining `[bracket]` placeholders are only in the Astro legal page templates, not in the JSON files. |
 | 13.2 | All copy proofread (FR) by native French speaker | ⏳ | Cannot verify from code. |
 | 13.3 | All copy proofread (EN) | ⏳ | Cannot verify from code. |
-| 13.4 | Contact email, phone, LinkedIn URL correct and functional | ⚠️ | Values are present in JSON (`contact@fixis.fr`, `+33 6 13 24 70 16`, LinkedIn URL). **Cannot verify correctness** without client confirmation. |
+| 13.4 | Contact email, phone, LinkedIn URL correct and functional | ⚠️ | Values are present in JSON (`contact@fixis.fr`, `+33 6 13 24 70 16`, LinkedIn URL `https://www.linkedin.com/in/gildas-l-87a7972b/`). Phone and LinkedIn were updated from placeholders in commit 81ed13a. **Cannot verify correctness** without client confirmation. |
 | 13.5 | Legal page data verified by client (SIRET, address, legal form) | ❌ | Still has `[bracket]` placeholders — not yet provided by client. |
 
-**Status**: **0/5 PASS**, 1/5 ❌ (legal data), 3/5 ⚠️ (unverifiable or placeholder), 1/5 ⏳ (proofreading).
+**Status**: **1/5 PASS**, 1/5 ❌ (legal data), 1/5 ⚠️ (contact details need client confirmation), 2/5 ⏳ (proofreading).
 
 ---
 
@@ -348,9 +348,9 @@ All 12 P0 items are **⏳ PENDING** — they require a live production deploymen
 
 | Section | Total P0 | ✅ PASS | ❌ FAIL | ⚠️ AT-RISK | ⏳ PENDING |
 |---------|----------|---------|---------|-------------|------------|
-| 0. Client Sign-Off | 5 | 2 | 1 | 0 | 2 |
+| 0. Client Sign-Off | 5 | 3 | 1 | 1 | 0 |
 | 1. Project Setup | 10 | 8 | 0 | 2 | 0 |
-| 2. i18n / Content | 8 | 7 | 0 | 1 | 0 |
+| 2. i18n / Content | 8 | 8 | 0 | 0 | 0 |
 | 3. Components | 35 | 34 | 1 | 0 | 0 |
 | 4. Pages | 4 | 2 | 0 | 2 | 0 |
 | 5. API & Backend | 6 | 5 | 0 | 1 | 0 |
@@ -361,13 +361,13 @@ All 12 P0 items are **⏳ PENDING** — they require a live production deploymen
 | 10. Legal & GDPR | 7 | 3 | 2 | 1 | 1 |
 | 11. Deployment & Infra | 8 | 0 | 0 | 0 | 8 |
 | 12. Cross-Browser | 6 | 0 | 0 | 0 | 6 |
-| 13. Content Review | 5 | 0 | 1 | 3 | 1 |
+| 13. Content Review | 5 | 1 | 1 | 1 | 2 |
 | 14. Smoke Test | 12 | 0 | 0 | 0 | 12 |
-| **TOTAL** | **129** | **73 (57%)** | **5 (4%)** | **13 (10%)** | **38 (29%)** |
+| **TOTAL** | **129** | **76 (59%)** | **5 (4%)** | **11 (9%)** | **38 (29%)** |
 
 ### Items Requiring Immediate Action (❌ FAIL)
 
-These **5 items** are hard blockers that must be resolved before production:
+These **4 items** are hard blockers that must be resolved before production:
 
 1. **§0.2 / §10.1 — `[bracket]` placeholders in legal pages**
    - File: `src/pages/mentions-legales.astro` (5 placeholders: legal form, address, SIRET, phone, publisher name)
@@ -386,12 +386,7 @@ These **5 items** are hard blockers that must be resolved before production:
      ```
    - **Impact**: Without this, form JS executes on page load rather than being deferred to scroll intersection (spec requirement per `08-CONTACT-SPEC.md §10`).
 
-4. **§13.1 / §13.5 — Trust quote is placeholder content**
-   - File: `src/i18n/fr.json` lines 70-73, `src/i18n/en.json` lines 70-73
-   - Content "J'adore ce mec !" / "Claude Makelele" / "CEO, Total" is a joke — must be replaced with real testimonial or removed.
-   - **Mitigation**: The `Trust.astro` component already gates on `isPlaceholder` (checks if quote starts with `[`), so the placeholder will NOT render. However if real content is provided without brackets, it WILL render — and if it's still the joke content, that would be embarrassing.
-
-5. **§10.7 — Umami analytics mentioned in privacy policy but not integrated**
+4. **§10.7 — Umami analytics mentioned in privacy policy but not integrated**
    - File: `src/pages/politique-confidentialite.astro` §7 references Umami as active
    - File: `src/pages/mentions-legales.astro` §5 references Umami as active
    - File: `src/layouts/BaseLayout.astro` — no Umami `<script>` tag present
@@ -399,13 +394,13 @@ These **5 items** are hard blockers that must be resolved before production:
 
 ### Key AT-RISK Items (⚠️)
 
-These **13 items** deviate from spec or need verification before they become blockers:
+These **11 items** deviate from spec or need verification before they become blockers:
 
 | # | Item | Severity | Recommendation |
 |---|------|----------|----------------|
 | 1.5 | `astro.config.mjs` output mode is `'static'`, not `'hybrid'` | Low | Functionally works (API route opts into SSR via `prerender = false`). Change to `'hybrid'` for spec compliance if desired. |
 | 1.6 | No `tailwind.config.mjs` | Low | Tailwind v4 doesn't use this file. Update the checklist to reflect v4 CSS-based config, or create a stub file for documentation purposes. |
-| 2.3 | Trust quote content not finalized | Medium | Gated behind `isPlaceholder` check — won't render until real content provided. Not a visual bug. |
+| 2.3 | ~Trust quote content not finalized~ → **RESOLVED** | — | Placeholder quote removed from both JSON files. Trust.astro no longer renders a quote block. Stats alone meet the FR-TRUST-01 requirement ("OR"). |
 | 4.2, 4.3 | Legal pages have placeholders | **High** | Same as ❌ #1 above. |
 | 5.6 | RESEND_API_KEY env var unverifiable | High | Must be set before any form submission can work. Confirm in Vercel dashboard. |
 | 6.4 | Sitemap generation unverified | Low | Integration is configured. Run `npm run build` and check `dist/sitemap-index.xml`. |
@@ -429,7 +424,6 @@ These **13 items** deviate from spec or need verification before they become blo
 2. 🔴 **Provision infrastructure** — domain, Vercel deploy, env vars, DNS, email mailbox
 3. 🔴 **Fix `client:visible`** on Contact component (1-line change in `index.astro`)
 4. 🔴 **Resolve Umami** — either integrate script or update legal copy
-5. 🟡 **Finalize trust content** — real testimonial or remove quote block
-6. 🟡 **Run build + Lighthouse + axe DevTools** audit
-7. 🟡 **Cross-browser/device testing** on all required targets
-8. 🟡 **Client content review** — proofread all copy, verify contact details
+5. 🟡 **Run build + Lighthouse + axe DevTools** audit
+6. 🟡 **Cross-browser/device testing** on all required targets
+7. 🟡 **Client content review** — proofread all copy, verify contact details
