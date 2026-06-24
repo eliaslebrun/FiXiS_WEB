@@ -102,16 +102,11 @@ const { lang } = Astro.props
     if (e.key === 'Escape' && !overlay.hidden) closeMenu()
   })
 
-  // Sticky nav: add backdrop after scrolling past hero
-  const observer = new IntersectionObserver(
-    ([entry]) => {
-      navEl.classList.toggle('nav--scrolled', !entry.isIntersecting)
-    },
-    { threshold: 0 }
-  )
-
-  const hero = document.getElementById('hero')
-  if (hero) observer.observe(hero)
+  // Sticky nav: add backdrop as soon as page is scrolled
+  const onNavScroll = () => {
+    navEl.classList.toggle('nav--scrolled', window.scrollY > 0)
+  }
+  window.addEventListener('scroll', onNavScroll, { passive: true })
 </script>
 
 <style>
