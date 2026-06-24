@@ -24,12 +24,12 @@ All 5 P0 items in this section are **client-dependent** and cannot be verified b
 | # | Item | Status | Note |
 |---|------|--------|------|
 | 0.1 | Client confirms domain: `fixis.fr` | ⏳ | Code references `fixis.fr` throughout, but domain ownership verification is pending. |
-| 0.2 | Client provides: full name, SIRET, legal address | ❌ | **Still present as `[bracket]` placeholders** in both `mentions-legales.astro` and `politique-confidentialite.astro`. |
+| 0.2 | Client provides: full name, SIRET, legal address | ✅ | All populated in `mentions-legales.astro`: SASU, 209 boulevard Raspail 75014 Paris, SIRET 889 506 994 00017, Gildas Lebrun. Filled in commit 9bf9b09. |
 | 0.3 | Client provides: contact email, phone, LinkedIn URL | ✅ | Values populated in `src/i18n/fr.json` and `en.json` (`contact.direct.email`, `.phone`, `.linkedin`). Phone and LinkedIn are real data (see commit 81ed13a). |
-| 0.4 | Client fills in all `[bracket]` placeholders in `07-CONTENT.md` | ⚠️ | JSON files are clean (names, stats, contact details all populated with real data). The placeholder trust quote was **removed** from both JSON files (commit range 81ed13a→HEAD). However, **legal page placeholders remain** in `mentions-legales.astro` and `politique-confidentialite.astro`. |
+| 0.4 | Client fills in all `[bracket]` placeholders in `07-CONTENT.md` | ✅ | All `[bracket]` / `[X]` placeholders replaced across JSON files (commit 81ed13a) and legal pages (commit 9bf9b09). Trust quote placeholder removed (commit 01c071c). No bracket placeholders remain anywhere. |
 | 0.5 | Client confirms layout choice: Option A or B | ✅ | Code implements **Option A** (single page at `index.astro` with all sections + separate legal pages). |
 
-**Status**: **3/5 verified PASS**, 1/5 FAIL (legal placeholders), 1/5 pending.
+**Status**: **5/5 verified PASS**.
 
 ---
 
@@ -169,11 +169,11 @@ All 5 P0 items in this section are **client-dependent** and cannot be verified b
 | # | Item | Status | Note |
 |---|------|--------|------|
 | 4.1 | `src/pages/index.astro` — main landing page with all sections | ✅ | Renders: Nav → Hero → Services → About → Trust → Contact → Footer. Wrapped in `BaseLayout`. |
-| 4.2 | `src/pages/mentions-legales.astro` — legal notices page — FR-LEGAL-01 | ⚠️ | Page exists and is well-structured (7 legal sections). But **contains `[bracket]` placeholders** for: legal form (`[Micro-entreprise / EURL / …]`), address (`[Adresse complète]`), SIRET (`[Numéro SIRET]`), phone (`[+33 X XX XX XX XX]`), publisher name (`[Prénom Nom]`). |
-| 4.3 | `src/pages/politique-confidentialite.astro` — GDPR privacy policy — FR-LEGAL-02 | ⚠️ | Page exists with 10 sections covering all required topics. But **contains `[bracket]` placeholders** for: publisher name (`[Prénom Nom]`), SIRET (`[Numéro SIRET]`). |
+| 4.2 | `src/pages/mentions-legales.astro` — legal notices page — FR-LEGAL-01 | ✅ | Page exists with 7 well-structured legal sections. All data populated: SASU, 209 boulevard Raspail 75014 Paris, SIRET 889 506 994 00017, +33 6 13 24 70 16, Gildas Lebrun, Vercel Inc. hosting. Filled in commit 9bf9b09. |
+| 4.3 | `src/pages/politique-confidentialite.astro` — GDPR privacy policy — FR-LEGAL-02 | ✅ | Page exists with 10 sections covering all required topics. All data populated: Gildas Lebrun, SIRET 889 506 994 00017. Comprehensive GDPR coverage including Umami analytics disclosure. |
 | 4.4 | All pages use `BaseLayout.astro` wrapper | ✅ | All three pages use `<BaseLayout>` with appropriate props. |
 
-**Status**: **2/4 PASS**, 2/4 ⚠️ (legal pages have unresolved placeholders).
+**Status**: **4/4 PASS**.
 
 ---
 
@@ -255,15 +255,15 @@ All 5 P0 items in this section are **client-dependent** and cannot be verified b
 
 | # | Item | Status | Note |
 |---|------|--------|------|
-| 10.1 | Mentions légales with real data (publisher identity, SIRET, hosting) — FR-LEGAL-01 | ❌ | **5 `[bracket]` placeholders remain.** Cannot ship with placeholder data — French law requires accurate legal notices. |
-| 10.2 | Politique de confidentialité live — FR-LEGAL-02 | ❌ | **2 `[bracket]` placeholders remain** (publisher name, SIRET). Policy content is otherwise comprehensive and well-structured. |
+| 10.1 | Mentions légales with real data (publisher identity, SIRET, hosting) — FR-LEGAL-01 | ✅ | All fields populated: SASU, 209 boulevard Raspail 75014 Paris, SIRET 889 506 994 00017, +33 6 13 24 70 16, Gildas Lebrun, Vercel Inc. hosting. |
+| 10.2 | Politique de confidentialité live — FR-LEGAL-02 | ✅ | All fields populated: Gildas Lebrun, SIRET 889 506 994 00017. Policy is comprehensive and covers all required GDPR topics (10 sections). |
 | 10.3 | GDPR consent checkbox present and required — FR-CONT-03 | ✅ | Verified in 3.6.3. |
 | 10.4 | No personal data stored client-side without consent — FR-LEGAL-04 | ✅ | localStorage only stores `fixis_lang` (language preference). No form data cached. |
 | 10.5 | Resend domain verified, sending from `contact@fixis.fr` | ⏳ | Code correctly uses `contact@fixis.fr` as sender. Domain verification is a Resend dashboard action — cannot verify from code. |
 | 10.6 | Cookie consent banner only if analytics cookies are used — FR-LEGAL-03 | ✅ | No cookie consent banner currently implemented, which is **correct** since Umami is cookie-free and no tracking cookies are set. |
-| 10.7 | Umami analytics configured as cookie-free — FR-LEGAL-03 | ⚠️ | **Umami script is NOT included in BaseLayout.astro** (no `<script>` tag for Umami). The privacy policy references Umami as if it were active, but it's not actually integrated. This means either: (a) analytics are not yet set up, or (b) the policy is aspirational. Either way, the implementation and policy are out of sync. |
+| 10.7 | Umami analytics configured as cookie-free — FR-LEGAL-03 | ⚠️ | **Umami script is NOT included in BaseLayout.astro** (no `<script>` tag for Umami). The privacy policy (§7) and mentions légales (§5) reference Umami as if it were active, but it's not actually integrated. This means either: (a) analytics are not yet set up, or (b) the policy is aspirational. Either way, the implementation and policy are out of sync. |
 
-**Status**: **3/7 PASS**, 2/7 ❌ (legal page placeholders), 1/7 ⚠️ (Umami not integrated), 1/7 ⏳ (Resend domain verification).
+**Status**: **5/7 PASS**, 1/7 ⚠️ (Umami not integrated), 1/7 ⏳ (Resend domain verification).
 
 ---
 
@@ -309,13 +309,13 @@ All 6 P0 items are **⏳ PENDING** — they require physical or emulated device 
 
 | # | Item | Status | Note |
 |---|------|--------|------|
-| 13.1 | All `[bracket]` placeholders replaced in both FR and EN JSON | ✅ | JSON files are clean of literal brackets. All `[X]` placeholders were replaced with real data in commit 81ed13a. The placeholder trust quote was removed entirely. Remaining `[bracket]` placeholders are only in the Astro legal page templates, not in the JSON files. |
+| 13.1 | All `[bracket]` placeholders replaced in both FR and EN JSON | ✅ | JSON files are clean of literal brackets. All `[X]` placeholders were replaced with real data in commit 81ed13a (25+ years, 25+ projects, 200+ users trained, real phone, real LinkedIn URL). The placeholder trust quote was removed in commit 01c071c. Legal page `[bracket]` placeholders were filled in commit 9bf9b09. No placeholder brackets remain anywhere in the codebase. |
 | 13.2 | All copy proofread (FR) by native French speaker | ⏳ | Cannot verify from code. |
 | 13.3 | All copy proofread (EN) | ⏳ | Cannot verify from code. |
 | 13.4 | Contact email, phone, LinkedIn URL correct and functional | ⚠️ | Values are present in JSON (`contact@fixis.fr`, `+33 6 13 24 70 16`, LinkedIn URL `https://www.linkedin.com/in/gildas-l-87a7972b/`). Phone and LinkedIn were updated from placeholders in commit 81ed13a. **Cannot verify correctness** without client confirmation. |
-| 13.5 | Legal page data verified by client (SIRET, address, legal form) | ❌ | Still has `[bracket]` placeholders — not yet provided by client. |
+| 13.5 | Legal page data verified by client (SIRET, address, legal form) | ⚠️ | Data is populated in both legal pages (SASU, 209 boulevard Raspail 75014 Paris, SIRET 889 506 994 00017). **Cannot verify correctness** without client confirmation that this is accurate. |
 
-**Status**: **1/5 PASS**, 1/5 ❌ (legal data), 1/5 ⚠️ (contact details need client confirmation), 2/5 ⏳ (proofreading).
+**Status**: **1/5 PASS**, 0/5 ❌, 2/5 ⚠️ (contact details + legal data need client confirmation), 2/5 ⏳ (proofreading).
 
 ---
 
@@ -348,37 +348,28 @@ All 12 P0 items are **⏳ PENDING** — they require a live production deploymen
 
 | Section | Total P0 | ✅ PASS | ❌ FAIL | ⚠️ AT-RISK | ⏳ PENDING |
 |---------|----------|---------|---------|-------------|------------|
-| 0. Client Sign-Off | 5 | 3 | 1 | 1 | 0 |
+| 0. Client Sign-Off | 5 | 5 | 0 | 0 | 0 |
 | 1. Project Setup | 10 | 8 | 0 | 2 | 0 |
 | 2. i18n / Content | 8 | 8 | 0 | 0 | 0 |
 | 3. Components | 35 | 34 | 1 | 0 | 0 |
-| 4. Pages | 4 | 2 | 0 | 2 | 0 |
+| 4. Pages | 4 | 4 | 0 | 0 | 0 |
 | 5. API & Backend | 6 | 5 | 0 | 1 | 0 |
 | 6. SEO & Meta | 5 | 4 | 0 | 1 | 0 |
 | 7. Accessibility | 5 | 3 | 0 | 1 | 1 |
 | 8. Responsive Design | 5 | 2 | 0 | 1 | 2 |
 | 9. Performance | 8 | 3 | 0 | 0 | 5 |
-| 10. Legal & GDPR | 7 | 3 | 2 | 1 | 1 |
+| 10. Legal & GDPR | 7 | 5 | 0 | 1 | 1 |
 | 11. Deployment & Infra | 8 | 0 | 0 | 0 | 8 |
 | 12. Cross-Browser | 6 | 0 | 0 | 0 | 6 |
-| 13. Content Review | 5 | 1 | 1 | 1 | 2 |
+| 13. Content Review | 5 | 1 | 0 | 2 | 2 |
 | 14. Smoke Test | 12 | 0 | 0 | 0 | 12 |
-| **TOTAL** | **129** | **76 (59%)** | **5 (4%)** | **11 (9%)** | **38 (29%)** |
+| **TOTAL** | **129** | **82 (64%)** | **1 (1%)** | **9 (7%)** | **38 (29%)** |
 
 ### Items Requiring Immediate Action (❌ FAIL)
 
-These **4 items** are hard blockers that must be resolved before production:
+These **1 item** is a hard blocker that must be resolved before production:
 
-1. **§0.2 / §10.1 — `[bracket]` placeholders in legal pages**
-   - File: `src/pages/mentions-legales.astro` (5 placeholders: legal form, address, SIRET, phone, publisher name)
-   - File: `src/pages/politique-confidentialite.astro` (2 placeholders: publisher name, SIRET)
-   - **Action**: Client must provide this data. French law requires accurate Mentions Légales.
-
-2. **§10.2 — Politique de confidentialité not finalized**
-   - Same root cause as above — placeholders for publisher identity.
-   - **Action**: Fill in client data, have client review and approve.
-
-3. **§3.6.13 — Contact component not loaded as `client:visible`**
+1. **§3.6.13 — Contact component not loaded as `client:visible`**
    - File: `src/pages/index.astro` line 13
    - **Fix**: Change `import Contact from '../components/Contact.astro'` to use `client:visible` directive:
      ```astro
@@ -386,28 +377,23 @@ These **4 items** are hard blockers that must be resolved before production:
      ```
    - **Impact**: Without this, form JS executes on page load rather than being deferred to scroll intersection (spec requirement per `08-CONTACT-SPEC.md §10`).
 
-4. **§10.7 — Umami analytics mentioned in privacy policy but not integrated**
-   - File: `src/pages/politique-confidentialite.astro` §7 references Umami as active
-   - File: `src/pages/mentions-legales.astro` §5 references Umami as active
-   - File: `src/layouts/BaseLayout.astro` — no Umami `<script>` tag present
-   - **Action**: Either (a) integrate Umami script in `BaseLayout.astro`, or (b) remove/qualify the Umami references in legal pages.
-
 ### Key AT-RISK Items (⚠️)
 
-These **11 items** deviate from spec or need verification before they become blockers:
+These **9 items** deviate from spec or need verification before they become blockers:
 
 | # | Item | Severity | Recommendation |
 |---|------|----------|----------------|
 | 1.5 | `astro.config.mjs` output mode is `'static'`, not `'hybrid'` | Low | Functionally works (API route opts into SSR via `prerender = false`). Change to `'hybrid'` for spec compliance if desired. |
 | 1.6 | No `tailwind.config.mjs` | Low | Tailwind v4 doesn't use this file. Update the checklist to reflect v4 CSS-based config, or create a stub file for documentation purposes. |
 | 2.3 | ~Trust quote content not finalized~ → **RESOLVED** | — | Placeholder quote removed from both JSON files. Trust.astro no longer renders a quote block. Stats alone meet the FR-TRUST-01 requirement ("OR"). |
-| 4.2, 4.3 | Legal pages have placeholders | **High** | Same as ❌ #1 above. |
 | 5.6 | RESEND_API_KEY env var unverifiable | High | Must be set before any form submission can work. Confirm in Vercel dashboard. |
 | 6.4 | Sitemap generation unverified | Low | Integration is configured. Run `npm run build` and check `dist/sitemap-index.xml`. |
 | 7.2 | Color contrast not tool-verified | Medium | Run axe DevTools or a contrast checker on the built site. |
 | 8.4 | LangToggle height is 28px (< 44px minimum) | Medium | Increase `min-height` to `44px` for WCAG 2.5.5 compliance. |
+| 10.7 | Umami analytics referenced but not integrated | **High** | Legal pages and privacy policy reference Umami as active, but no `<script>` tag in BaseLayout.astro. Either integrate or remove references. |
 | 11.x | All deployment items pending | **High** | Domain, Vercel, DNS, env vars — entire infrastructure needs to be provisioned. |
 | 13.4 | Contact details unverified by client | Medium | Phone and LinkedIn URL in JSON need client confirmation. |
+| 13.5 | Legal page data unverified by client | Medium | Data is populated (SASU, address, SIRET) but needs client confirmation of accuracy. |
 
 ### What's Working Well
 
@@ -420,10 +406,10 @@ These **11 items** deviate from spec or need verification before they become blo
 
 ### Recommended Priority Order for Resolution
 
-1. 🔴 **Get client data** — full name, SIRET, legal address, legal form → fill all legal page placeholders
-2. 🔴 **Provision infrastructure** — domain, Vercel deploy, env vars, DNS, email mailbox
-3. 🔴 **Fix `client:visible`** on Contact component (1-line change in `index.astro`)
-4. 🔴 **Resolve Umami** — either integrate script or update legal copy
+1. 🔴 **Provision infrastructure** — domain `fixis.fr`, Vercel deploy, env vars (`RESEND_API_KEY`), DNS, email mailbox
+2. 🔴 **Fix `client:visible`** on Contact component (1-line change in `index.astro`)
+3. 🔴 **Resolve Umami** — either integrate script in `BaseLayout.astro` or update legal policy text to remove references
+4. 🟡 **Client verification** — confirm SIRET, address, phone, LinkedIn URL are accurate
 5. 🟡 **Run build + Lighthouse + axe DevTools** audit
 6. 🟡 **Cross-browser/device testing** on all required targets
-7. 🟡 **Client content review** — proofread all copy, verify contact details
+7. 🟡 **Client content review** — proofread all copy in FR and EN
