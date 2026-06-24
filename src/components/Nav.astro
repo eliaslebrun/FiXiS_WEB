@@ -17,9 +17,15 @@ const { lang } = Astro.props
 
 <header id="nav" class="nav" role="banner">
   <div class="nav__inner container">
-    <!-- Wordmark -->
+    <!-- Logo -->
     <a href="/#hero" class="nav__logo" aria-label="FiXiS — retour à l'accueil">
-      FiXiS
+      <img
+        src="/images/Gemini_Generated_Image_i2nfxgi2nfxgi2nf_inspyrenet.png"
+        alt="FiXiS"
+        class="nav__logo-img"
+        width="120"
+        height="40"
+      />
     </a>
 
     <!-- Desktop nav links -->
@@ -135,29 +141,22 @@ const { lang } = Astro.props
   }
 
   .nav__logo {
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: 1.25rem;
-    letter-spacing: -0.03em;
-    color: var(--color-cream);
+    display: flex;
+    align-items: center;
     text-decoration: none;
-    position: relative;
   }
 
-  .nav__logo::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--color-yellow);
-    transition: width var(--duration-medium) var(--ease-out-expo);
+  .nav__logo-img {
+    height: 2.5rem;
+    width: auto;
+    display: block;
+    filter: brightness(0) invert(1);
+    transition: opacity var(--duration-fast);
   }
 
-  .nav__logo:hover::after,
-  .nav__logo:focus-visible::after {
-    width: 100%;
+  .nav__logo:hover .nav__logo-img,
+  .nav__logo:focus-visible .nav__logo-img {
+    opacity: 0.85;
   }
 
   .nav__links {

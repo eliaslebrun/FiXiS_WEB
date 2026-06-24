@@ -43,43 +43,15 @@ const { lang } = Astro.props
       </div>
     </div>
 
-    <!-- Right column — abstract visual -->
+    <!-- Right column — logo visual -->
     <div class="hero__visual" aria-hidden="true">
       <div class="hero__visual-inner">
-        <!-- Abstract typographic / geometric element -->
-        <svg
+        <img
+          src="/images/Gemini_Generated_Image_i2nfxgi2nfxgi2nf_inspyrenet.png"
+          alt=""
           class="hero__glyph"
-          viewBox="0 0 400 400"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
-          <!-- Large background F letterform -->
-          <text
-            x="20" y="320"
-            font-family="sans-serif"
-            font-weight="900"
-            font-size="360"
-            fill="#FCD405"
-            opacity="0.06"
-          >F</text>
-          <!-- Yellow accent rectangle -->
-          <rect x="20" y="60" width="80" height="6" fill="#FCD405" opacity="0.9"/>
-          <!-- Green rectangle -->
-          <rect x="20" y="80" width="180" height="6" fill="#1B8F3A" opacity="0.7"/>
-          <!-- Dot grid -->
-          {Array.from({ length: 6 }, (_, row) =>
-            Array.from({ length: 6 }, (_, col) => (
-              <circle
-                cx={280 + col * 18}
-                cy={260 + row * 18}
-                r="1.5"
-                fill="#F5F2EC"
-                opacity="0.2"
-              />
-            ))
-          )}
-        </svg>
+          role="presentation"
+        />
       </div>
     </div>
   </div>
@@ -169,15 +141,17 @@ const { lang } = Astro.props
   .hero__visual-inner {
     width: 100%;
     max-width: 400px;
-    aspect-ratio: 1;
-    border: 1px solid var(--color-border);
-    position: relative;
-    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-6);
   }
 
   .hero__glyph {
     width: 100%;
-    height: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
   }
 
   /* Scroll hint */

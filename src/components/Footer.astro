@@ -24,7 +24,13 @@ const copyright = t(lang, 'footer.copyright').replace('{year}', String(year))
       <!-- Left: brand -->
       <div class="footer__brand">
         <a href="/#hero" class="footer__logo" aria-label="FiXiS — retour à l'accueil">
-          FiXiS
+          <img
+            src="/images/Gemini_Generated_Image_i2nfxgi2nfxgi2nf_inspyrenet.png"
+            alt="FiXiS"
+            class="footer__logo-img"
+            width="120"
+            height="40"
+          />
         </a>
         <p class="footer__tagline" data-i18n="footer.tagline">{t(lang, 'footer.tagline')}</p>
         <a href={`mailto:${t(lang, 'contact.direct.email')}`} class="footer__email">
@@ -84,12 +90,22 @@ const copyright = t(lang, 'footer.copyright').replace('{year}', String(year))
   }
 
   .footer__logo {
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: 1.25rem;
-    letter-spacing: -0.03em;
-    color: var(--color-cream);
+    display: flex;
+    align-items: center;
     text-decoration: none;
+  }
+
+  .footer__logo-img {
+    height: 2rem;
+    width: auto;
+    display: block;
+    filter: brightness(0) invert(1);
+    transition: opacity var(--duration-fast);
+  }
+
+  .footer__logo:hover .footer__logo-img,
+  .footer__logo:focus-visible .footer__logo-img {
+    opacity: 0.85;
   }
 
   .footer__tagline {
