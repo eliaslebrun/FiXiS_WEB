@@ -65,12 +65,7 @@
       { "value": "200+", "label": "utilisateurs formés" },
       { "value": "3",    "label": "pays d'intervention" }
     ],
-    "logos_label": "Ils m'ont fait confiance",
-    "quote": {
-      "text": "J'adore ce mec !",
-      "author": "Claude Makelele",
-      "role": "CEO, Total"
-    }
+    "logos_label": "Ils m'ont fait confiance"
   },
   "contact": {
     "label": "Contact",

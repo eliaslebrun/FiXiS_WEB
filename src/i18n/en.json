@@ -65,12 +65,7 @@
       { "value": "200+", "label": "users trained" },
       { "value": "3",    "label": "countries of operation" }
     ],
-    "logos_label": "Trusted by",
-    "quote": {
-      "text": "I love this guy !",
-      "author": "Claude Makelele",
-      "role": "CEO, Total"
-    }
+    "logos_label": "Trusted by"
   },
   "contact": {
     "label": "Contact",

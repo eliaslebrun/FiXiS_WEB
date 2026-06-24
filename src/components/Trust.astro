@@ -19,12 +19,6 @@ interface Stat {
 const { lang } = Astro.props
 
 const stats = tObjectArray<Stat>(lang, 'trust.stats')
-
-// Show testimonial only when client provides real content (not placeholders)
-const quoteText   = t(lang, 'trust.quote.text')
-const quoteAuthor = t(lang, 'trust.quote.author')
-const quoteRole   = t(lang, 'trust.quote.role')
-const isPlaceholder = quoteText.startsWith('[')
 ---
 
 <section id="trust" class="trust section" aria-label={t(lang, 'trust.headline')}>
@@ -44,22 +38,6 @@ const isPlaceholder = quoteText.startsWith('[')
         </div>
       ))}
     </div>
-
-    <!-- Divider -->
-    <div class="trust__divider reveal" aria-hidden="true"></div>
-
-    <!-- Testimonial (only shown when real content available) -->
-    {!isPlaceholder && (
-      <blockquote class="trust__quote reveal">
-        <p class="trust__quote-text" data-i18n="trust.quote.text">"{quoteText}"</p>
-        <footer class="trust__quote-footer">
-          <cite>
-            <span class="trust__quote-author" data-i18n="trust.quote.author">{quoteAuthor}</span>
-            <span class="trust__quote-role" data-i18n="trust.quote.role">{quoteRole}</span>
-          </cite>
-        </footer>
-      </blockquote>
-    )}
 
   </div>
 </section>
@@ -113,50 +91,6 @@ const isPlaceholder = quoteText.startsWith('[')
     letter-spacing: var(--text-label-ls);
     text-transform: uppercase;
     color: var(--color-gray-400);
-  }
-
-  /* Divider */
-  .trust__divider {
-    height: 1px;
-    background: var(--color-border);
-    margin-bottom: var(--space-10);
-  }
-
-  /* Testimonial */
-  .trust__quote {
-    max-width: 700px;
-    margin: 0;
-    padding: 0;
-  }
-
-  .trust__quote-text {
-    font-family: var(--font-body);
-    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-    font-style: italic;
-    line-height: 1.5;
-    color: var(--color-cream);
-    margin-bottom: var(--space-5);
-    max-width: none;
-  }
-
-  .trust__quote-footer {
-    font-style: normal;
-  }
-
-  .trust__quote-author {
-    display: block;
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: var(--text-body);
-    color: var(--color-cream);
-  }
-
-  .trust__quote-role {
-    display: block;
-    font-family: var(--font-display);
-    font-size: var(--text-small);
-    color: var(--color-gray-400);
-    letter-spacing: var(--text-label-ls);
   }
 
   /* Responsive */
