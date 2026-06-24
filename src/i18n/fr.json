@@ -45,12 +45,12 @@
   "about": {
     "label": "À propos",
     "headline": "Un consultant, pas une équipe",
-    "paragraph_1": "FiXiS, c'est Gildas Lebrun. Consultant SAP Finance indépendant avec [X] ans d'expérience sur des projets complexes en environnement grand compte.",
+    "paragraph_1": "FiXiS, c'est Gildas Lebrun. Consultant SAP Finance indépendant avec 25+ ans d'expérience sur des projets complexes en environnement grand compte.",
     "paragraph_2": "Ce que ça change pour vous : un seul interlocuteur du cadrage au go-live, une expertise sans frais de structure, et une vraie disponibilité.",
     "credentials_label": "Certifications & expérience",
     "credentials": [
       "SAP Certified — Finance in SAP S/4HANA",
-      "[X]+ projets SAP livrés",
+      "25+ projets SAP livrés",
       "Secteurs : industrie, énergie, services…",
       "Intervention en France et à l'international"
     ],
@@ -60,9 +60,9 @@
     "label": "Références",
     "headline": "Des résultats, pas des promesses",
     "stats": [
-      { "value": "[X]+", "label": "ans d'expérience SAP" },
-      { "value": "[X]+", "label": "projets livrés" },
-      { "value": "[X]+", "label": "utilisateurs formés" },
+      { "value": "25+", "label": "ans d'expérience SAP" },
+      { "value": "25+", "label": "projets livrés" },
+      { "value": "200+", "label": "utilisateurs formés" },
       { "value": "3",    "label": "pays d'intervention" }
     ],
     "logos_label": "Ils m'ont fait confiance",
@@ -119,9 +119,9 @@
       "email_label": "E-mail direct",
       "email": "contact@fixis.fr",
       "phone_label": "Téléphone",
-      "phone": "[+33 X XX XX XX XX]",
+      "phone": "+33 6 13 24 70 16",
       "linkedin_label": "LinkedIn",
-      "linkedin": "[url LinkedIn]",
+      "linkedin": "https://www.linkedin.com/in/gildas-l-87a7972b/",
       "location": "Basé en France · Interventions Europe",
       "response_time": "Réponse sous 24h"
     }

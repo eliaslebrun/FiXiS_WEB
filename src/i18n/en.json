@@ -45,12 +45,12 @@
   "about": {
     "label": "About",
     "headline": "One consultant, not a team",
-    "paragraph_1": "FiXiS is Gildas Lebrun. An independent SAP Finance consultant with [X] years of experience on complex projects in enterprise environments.",
+    "paragraph_1": "FiXiS is Gildas Lebrun. An independent SAP Finance consultant with 25+ years of experience on complex projects in enterprise environments.",
     "paragraph_2": "What that means for you: one point of contact from scoping to go-live, expertise without overhead costs, and genuine availability.",
     "credentials_label": "Certifications & experience",
     "credentials": [
       "SAP Certified — Finance in SAP S/4HANA",
-      "[X]+ SAP projects delivered",
+      "25+ SAP projects delivered",
       "Sectors: industry, energy, services…",
       "Available in France and internationally"
     ],
@@ -60,9 +60,9 @@
     "label": "Track record",
     "headline": "Results, not promises",
     "stats": [
-      { "value": "[X]+", "label": "years of SAP experience" },
-      { "value": "[X]+", "label": "projects delivered" },
-      { "value": "[X]+", "label": "users trained" },
+      { "value": "25+", "label": "years of SAP experience" },
+      { "value": "25+", "label": "projects delivered" },
+      { "value": "200+", "label": "users trained" },
       { "value": "3",    "label": "countries of operation" }
     ],
     "logos_label": "Trusted by",
