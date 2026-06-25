@@ -29,7 +29,7 @@ const { number, title, description, staggerIndex = 0, i18nKey } = Astro.props
 
 <style>
   .service-card {
-    padding: var(--space-8) var(--space-6);
+    padding: var(--space-6) var(--space-4);
     border: 1px solid var(--color-border);
     position: relative;
     cursor: default;
@@ -68,7 +68,7 @@ const { number, title, description, staggerIndex = 0, i18nKey } = Astro.props
 
   .service-card__title {
     font-family: var(--font-display);
-    font-size: var(--text-h2);
+    font-size: clamp(1.25rem, 2.5vw, 1.625rem);
     font-weight: 700;
     line-height: var(--text-h2-lh);
     color: var(--color-cream);
