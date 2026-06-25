@@ -183,9 +183,6 @@ Toute la documentation de conception est dans le dossier `docs/` :
 
 ## Prochaines étapes avant lancement
 
-- [ ] Remplir les `[crochets]` dans `fr.json` et `en.json` (nom, SIRET, téléphone, LinkedIn, stats)
-- [ ] Ajouter la photo client dans `public/images/` et mettre à jour `About.astro`
-- [ ] Compléter les mentions légales (`mentions-legales.astro`) avec les vraies données
 - [ ] Configurer le domaine `fixis.fr` sur Vercel
 - [ ] Vérifier le domaine dans Resend pour l'envoi `from: contact@fixis.fr`
 - [ ] Implémenter hCaptcha (optionnel — les variables d'env sont déjà préparées)
