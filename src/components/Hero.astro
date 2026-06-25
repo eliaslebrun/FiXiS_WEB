@@ -181,10 +181,31 @@ const { lang } = Astro.props
     animation: fadeUp 1s var(--ease-out-expo) 1.5s both;
   }
 
+  /* Tablet */
+  @media (min-width: 768px) and (max-width: 1199px) {
+    .hero__inner {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-8);
+      padding-top: var(--space-8);
+      padding-bottom: var(--space-8);
+    }
+
+    .hero__visual-inner {
+      max-width: 320px;
+    }
+
+    .hero__sub {
+      max-width: 36ch;
+    }
+  }
+
   /* Mobile */
   @media (max-width: 767px) {
     .hero__inner {
       grid-template-columns: 1fr;
+      gap: var(--space-6);
+      padding-top: var(--space-8);
+      padding-bottom: var(--space-8);
     }
 
     .hero__visual {
@@ -193,7 +214,19 @@ const { lang } = Astro.props
     }
 
     .hero__visual-inner {
-      max-width: 280px;
+      max-width: 200px;
+    }
+
+    .hero__copy {
+      gap: var(--space-4);
+    }
+
+    .hero__sub {
+      max-width: 100%;
+    }
+
+    .hero__cta {
+      margin-top: var(--space-2);
     }
   }
 </style>

@@ -45,7 +45,7 @@
   --font-body:    'Source Serif 4', serif;
 
   /* Type scale */
-  --text-display:           clamp(3.5rem, 8vw, 7rem);
+  --text-display:           clamp(2.5rem, 6vw, 5.5rem);
   --text-display-lh:        0.95;
   --text-display-ls:        -0.03em;
 
