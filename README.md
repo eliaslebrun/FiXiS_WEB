@@ -30,7 +30,7 @@ npm run dev
 fixis/
 ├── public/
 │   ├── images/
-│   │   ├── Gemini_Generated_Image_i2nfxgi2nfxgi2nf_inspyrenet.png  ← logo
+│   │   ├── FXS_logo_transparent.png  ← logo
 │   │   └── Gemini_Generated_Image_xonxauxonxauxonx-clean.png        ← photo
 │   ├── favicon.svg / .ico
 │   └── robots.txt
